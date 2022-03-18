@@ -24,4 +24,4 @@ yarn-error.log*
 .test
 
 .idea
-voting-ui.iml
+voting.iml
