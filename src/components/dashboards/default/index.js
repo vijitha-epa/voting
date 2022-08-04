@@ -8,6 +8,7 @@ import {
   weeklySalesData,
   weather,
   products,
+  members,
   storageStatus,
   files,
   users,
@@ -28,29 +29,39 @@ import BandwidthSaved from './BandwidthSaved';
 import TopProducts from './TopProducts';
 import Weather from './Weather';
 import Banner from './Banner';
+import MemberSummery from "./MemberSummery";
 
 const Dashboard = () => {
   return (
     <>
       <Row className="g-3 mb-3">
-        <Col md={12} xxl={3}>
+        <Col md={12}>
           <Banner />
         </Col>
       </Row>
+
       <Row className="g-3 mb-3">
-        <Col md={6} xxl={3}>
-          <WeeklySales data={weeklySalesData} />
+        <Col md={6}>
+          <MemberSummery members={members} isPositive={true} />
         </Col>
-        <Col md={6} xxl={3}>
-          <TotalOrder data={totalOrder} />
-        </Col>
-        <Col md={6} xxl={3}>
-          <MarketShare data={marketShare} radius={['100%', '87%']} />
-        </Col>
-        <Col md={6} xxl={3}>
-          <Weather data={weather} />
+        <Col md={6}>
+          <MemberSummery members={members} isPositive={false} />
         </Col>
       </Row>
+      {/*<Row className="g-3 mb-3">*/}
+      {/*  <Col md={6} xxl={3}>*/}
+      {/*    <WeeklySales data={weeklySalesData} />*/}
+      {/*  </Col>*/}
+      {/*  <Col md={6} xxl={3}>*/}
+      {/*    <TotalOrder data={totalOrder} />*/}
+      {/*  </Col>*/}
+      {/*  <Col md={6} xxl={3}>*/}
+      {/*    <MarketShare data={marketShare} radius={['100%', '87%']} />*/}
+      {/*  </Col>*/}
+      {/*  <Col md={6} xxl={3}>*/}
+      {/*    <Weather data={weather} />*/}
+      {/*  </Col>*/}
+      {/*</Row>*/}
 
       <Row className="g-3 mb-3">
         <Col lg={6}>
@@ -67,15 +78,6 @@ const Dashboard = () => {
         </Col>
         <Col lg={6} xl={5} xxl={4}>
           <SpaceWarning />
-        </Col>
-      </Row>
-
-      <Row className="g-3 mb-3">
-        <Col lg={7} xl={8}>
-          <BestSellingProducts products={products} />
-        </Col>
-        <Col lg={5} xl={4}>
-          <SharedFiles files={files} className="h-lg-100" />
         </Col>
       </Row>
 
