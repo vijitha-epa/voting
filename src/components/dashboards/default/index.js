@@ -1,6 +1,6 @@
 import React from 'react';
 import WeeklySales from './WeeklySales';
-import {Row, Col, Carousel} from 'react-bootstrap';
+import { Row, Col, Carousel } from 'react-bootstrap';
 import {
   marketShare,
   totalOrder,
@@ -27,7 +27,7 @@ import ActiveUsers from './ActiveUsers';
 import BandwidthSaved from './BandwidthSaved';
 import TopProducts from './TopProducts';
 import Weather from './Weather';
-import Banner from "./Banner";
+import Banner from './Banner';
 
 const Dashboard = () => {
   return (
