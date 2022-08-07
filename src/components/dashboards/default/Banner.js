@@ -1,8 +1,5 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import generic6 from 'assets/img/generic/6.jpg';
-import generic7 from 'assets/img/generic/7.jpg';
-import generic8 from 'assets/img/generic/8.jpg';
 import generic5 from 'assets/img/generic/5.jpg';
 import generic9 from 'assets/img/generic/9.jpg';
 import chat8 from 'assets/img/chat/8.jpg';

@@ -48,6 +48,15 @@ const Dashboard = () => {
           <MemberSummery members={members} isPositive={false} />
         </Col>
       </Row>
+
+      {/*<Row className="g-3 mb-3">*/}
+      {/*  <Col lg={7} xl={8}>*/}
+      {/*    <BestSellingProducts products={products} />*/}
+      {/*  </Col>*/}
+      {/*  <Col lg={5} xl={4}>*/}
+      {/*    <SharedFiles files={files} className="h-lg-100" />*/}
+      {/*  </Col>*/}
+      {/*</Row>*/}
       {/*<Row className="g-3 mb-3">*/}
       {/*  <Col md={6} xxl={3}>*/}
       {/*    <WeeklySales data={weeklySalesData} />*/}
@@ -63,23 +72,23 @@ const Dashboard = () => {
       {/*  </Col>*/}
       {/*</Row>*/}
 
-      <Row className="g-3 mb-3">
-        <Col lg={6}>
-          <RunningProjects data={runningProjects} />
-        </Col>
-        <Col lg={6}>
-          <TotalSales data={totalSales} />
-        </Col>
-      </Row>
+      {/*<Row className="g-3 mb-3">*/}
+      {/*  <Col lg={6}>*/}
+      {/*    <RunningProjects data={runningProjects} />*/}
+      {/*  </Col>*/}
+      {/*  <Col lg={6}>*/}
+      {/*    <TotalSales data={totalSales} />*/}
+      {/*  </Col>*/}
+      {/*</Row>*/}
 
-      <Row className="g-3 mb-3">
-        <Col lg={6} xl={7} xxl={8}>
-          <StorageStatus className="h-lg-100" data={storageStatus} />
-        </Col>
-        <Col lg={6} xl={5} xxl={4}>
-          <SpaceWarning />
-        </Col>
-      </Row>
+      {/*<Row className="g-3 mb-3">*/}
+      {/*  <Col lg={6} xl={7} xxl={8}>*/}
+      {/*    <StorageStatus className="h-lg-100" data={storageStatus} />*/}
+      {/*  </Col>*/}
+      {/*  <Col lg={6} xl={5} xxl={4}>*/}
+      {/*    <SpaceWarning />*/}
+      {/*  </Col>*/}
+      {/*</Row>*/}
 
       <Row className="g-3">
         <Col sm={6} xxl={3}>
