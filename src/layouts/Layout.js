@@ -182,6 +182,7 @@ import SplitLockScreen from 'components/authentication/split/LockScreen';
 import Wizard from 'components/wizard/Wizard';
 import Dashboard from 'components/dashboards/default';
 import AppContext from 'context/Context';
+import Members from "components/members/Members";
 
 const Layout = () => {
   const HTMLClassList = document.getElementsByTagName('html')[0].classList;
@@ -358,6 +359,9 @@ const Layout = () => {
           <Route path="events/event-detail" element={<EventDetail />} />
           <Route path="events/create-an-event" element={<CreateEvent />} />
           <Route path="events/event-list" element={<EventList />} />
+
+          {/*Members*/}
+          <Route path="member/members" element={<Members />} />
 
           {/* Email */}
           <Route path="email/email-detail" element={<EmailDetail />} />
