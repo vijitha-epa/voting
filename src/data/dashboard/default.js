@@ -65,6 +65,7 @@ export const members = [
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: 6,
+    total_votes: 10
   },
   {
     id: 2,
@@ -80,6 +81,7 @@ export const members = [
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: 7,
+    total_votes: 10
   },
   {
     id: 3,
@@ -94,7 +96,8 @@ export const members = [
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
-    rating: 8,
+    rating: -8,
+    total_votes: 10
   },
   {
     id: 4,
@@ -110,6 +113,7 @@ export const members = [
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: 9,
+    total_votes: 10
   },
   {
     id: 5,
@@ -125,6 +129,7 @@ export const members = [
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: 10,
+    total_votes: 10
   },
   {
     id: 6,
@@ -140,6 +145,7 @@ export const members = [
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: -9,
+    total_votes: 10
   },
   {
     id: 7,
@@ -155,6 +161,7 @@ export const members = [
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: -8,
+    total_votes: 10
   },
   {
     id: 8,
@@ -170,6 +177,7 @@ export const members = [
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: -7,
+    total_votes: 10
   },
 ]
 

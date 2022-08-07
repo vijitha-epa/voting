@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Flex from 'components/common/Flex';
 import classNames from 'classnames';
 import Avatar from "../../common/Avatar";
+import FalconCardFooterLink from "../../common/FalconCardFooterLink";
 
 const getMembers = (members, isPositive) => members
   .filter(member => isPositive? member.rating > 0: member.rating <= 0)
@@ -14,7 +15,7 @@ const getMembers = (members, isPositive) => members
   .sort((m1, m2) => m2.rating - m1.rating );
 
 const Member = ({member, isPositive}) => {
-  const {img, name, age, gender, rating, avatar, edu_qualifications} = member;
+  const {img, name, age, gender, rating, avatar, edu_qualifications, total_votes} = member;
   console.log('isPositive', isPositive)
   return (<tr className={classNames({'border-bottom border-200': true})}>
       <td>
@@ -27,17 +28,17 @@ const Member = ({member, isPositive}) => {
                 {name}
               </Link>
             </h6>
-            <p className="fw-semi-bold mb-0 text-500">{gender}</p>
+            <p className="fw-semi-bold mb-0 text-500">{gender}/{age}</p>
           </div>
         </Flex>
       </td>
       <td className="align-middle text-end fw-semi-bold">
-        {age}
+        {total_votes}
       </td>
       <td className="align-middle pe-card">
         <Flex alignItems="center">
           <ProgressBar now={rating * 10} style={{width: '80px', height: 5}} variant={isPositive? 'info': 'warning'} />
-          <div className="fw-semi-bold ms-3">{rating}</div>
+          <div className="fw-semi-bold ms-3">{rating * 10}%</div>
         </Flex>
       </td>
     </tr>);
@@ -53,6 +54,7 @@ Member.propTypes = {
     edu_qualifications: PropTypes.array,
     prof_qualifications: PropTypes.array,
     rating: PropTypes.number.isRequired,
+    total_votes: PropTypes.number.isRequired,
   }).isRequired,
   isPositive: PropTypes.bool.isRequired,
 };
@@ -65,8 +67,8 @@ const MemberSummery = ({members, isPositive}) => {
         <Table borderless responsive className="mb-0 fs--1">
           <thead className="bg-light">
           <tr className="text-900">
-            <th>Member</th>
-            <th className="text-end">Age</th>
+            <th>Most {isPositive? 'loved': 'hated'} Member</th>
+            <th className="text-end">Votes</th>
             <th className="pe-card text-end" style={{width: '8rem'}}>
               Rating
             </th>
@@ -74,11 +76,7 @@ const MemberSummery = ({members, isPositive}) => {
           </thead>
           <tbody>
           {memberList.map((member, index) => (
-            <Member
-              member={member}
-              isPositive={isPositive}
-              key={member.id}
-            />))}
+            <Member member={member} isPositive={isPositive} key={member.id} />))}
           </tbody>
         </Table>
       </Card.Body>
@@ -92,9 +90,14 @@ const MemberSummery = ({members, isPositive}) => {
             </Form.Select>
           </Col>
           <Col xs="auto">
-            <Button variant="falcon-default" size="sm" as={Link} to="#!">
-              View All
-            </Button>
+            <FalconCardFooterLink
+              title="View All"
+              to="/member/members"
+              size="sm"
+            />
+            {/*<Button variant="falcon-default" size="sm" as={Link} to="#!">*/}
+            {/*  View All*/}
+            {/*</Button>*/}
           </Col>
         </Row>
       </Card.Footer>

@@ -1,50 +1,24 @@
 import React from 'react';
-import WeeklySales from './WeeklySales';
-import { Row, Col, Carousel } from 'react-bootstrap';
-import {
-  marketShare,
-  totalOrder,
-  totalSales,
-  weeklySalesData,
-  weather,
-  products,
-  members,
-  storageStatus,
-  files,
-  users,
-  topProducts,
-  runningProjects
-} from 'data/dashboard/default';
+import { Row, Col } from 'react-bootstrap';
+import { members, users, topProducts } from 'data/dashboard/default';
 
-import TotalOrder from './TotalOrder';
-import MarketShare from './MarketShare';
-import TotalSales from './TotalSales';
-import RunningProjects from './RunningProjects';
-import StorageStatus from './StorageStatus';
-import SpaceWarning from './SpaceWarning';
-import BestSellingProducts from './BestSellingProducts';
-import SharedFiles from './SharedFiles';
 import ActiveUsers from './ActiveUsers';
 import BandwidthSaved from './BandwidthSaved';
 import TopProducts from './TopProducts';
-import Weather from './Weather';
 import Banner from './Banner';
-import MemberSummery from "./MemberSummery";
+import MemberSummery from './MemberSummery';
 
 const Dashboard = () => {
   return (
     <>
       <Row className="g-3 mb-3">
-        <Col md={12}>
+        <Col xxl={4} xl={12}>
           <Banner />
         </Col>
-      </Row>
-
-      <Row className="g-3 mb-3">
-        <Col md={6}>
+        <Col xxl={4} xl={6}>
           <MemberSummery members={members} isPositive={true} />
         </Col>
-        <Col md={6}>
+        <Col xxl={4} xl={6}>
           <MemberSummery members={members} isPositive={false} />
         </Col>
       </Row>
