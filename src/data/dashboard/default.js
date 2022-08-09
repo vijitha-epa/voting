@@ -17,7 +17,13 @@ import team4 from 'assets/img/team/4.jpg';
 import team5 from 'assets/img/team/5.jpg';
 import team6 from 'assets/img/team/6.jpg';
 import team7 from 'assets/img/team/7.jpg';
-
+import member1 from 'assets/img/team/7.jpg';
+import member2 from 'assets/img/team/9.jpg';
+import member3 from 'assets/img/team/12.jpg';
+import member4 from 'assets/img/team/4.jpg';
+import member5 from 'assets/img/team/16.jpg';
+import member6 from 'assets/img/team/25.jpg';
+import member7 from "assets/img/team/7.jpg";
 export const weeklySalesData = [6000, 9000, 8500, 4000, 4500, 6500, 7000];
 
 export const totalOrder = [20, 40, 100, 120];
@@ -53,131 +59,139 @@ export const totalSales = [
 export const members = [
   {
     id: 1,
-    img: product10,
+    img: member1,
     name: 'member 1',
     avatar: {
       src: team1,
       size: '2xl',
       status: 'online'
     },
-    age: '65',
+    age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: 6,
-    total_votes: 10
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
   },
   {
     id: 2,
-    img: product11,
+    img: member2,
     name: 'member 2',
     avatar: {
       src: team2,
       size: '2xl',
       status: 'online'
     },
-    age: '65',
+    age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: 7,
-    total_votes: 10
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
   },
   {
     id: 3,
-    img: product12,
+    img: member3,
     name: 'member 3',
     avatar: {
       src: team2,
       size: '2xl',
       status: 'online'
     },
-    age: '65',
+    age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: -8,
-    total_votes: 10
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
   },
   {
     id: 4,
-    img: product13,
+    img: member4,
     name: 'member 4',
     avatar: {
       src: team3,
       size: '2xl',
       status: 'away'
     },
-    age: '65',
+    age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: 9,
-    total_votes: 10
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
   },
   {
     id: 5,
-    img: product14,
+    img: member6,
     name: 'member 5',
     avatar: {
       src: team7,
       size: '2xl',
       status: 'offline'
     },
-    age: '60',
+    age: 60,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: 10,
-    total_votes: 10
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
   },
   {
     id: 6,
-    img: product11,
+    img: member7,
     name: 'member 6',
     avatar: {
       src: team2,
       size: '2xl',
       status: 'online'
     },
-    age: '69',
+    age: 69,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: -9,
-    total_votes: 10
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
   },
   {
     id: 7,
-    img: product10,
+    img: member2,
     name: 'member 7',
     avatar: {
       src: team6,
       size: '2xl',
       status: 'offline'
     },
-    age: '65',
+    age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: -8,
-    total_votes: 10
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
   },
   {
     id: 8,
-    img: product12,
+    img: member4,
     name: 'member 8',
     avatar: {
       src: team4,
       size: '2xl',
       status: 'offline'
     },
-    age: '65',
+    age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: -7,
-    total_votes: 10
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
   },
 ]
 
