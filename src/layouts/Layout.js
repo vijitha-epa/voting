@@ -183,6 +183,7 @@ import Wizard from 'components/wizard/Wizard';
 import Dashboard from 'components/dashboards/default';
 import AppContext from 'context/Context';
 import Members from "components/members/Members";
+import MemberList from "../components/members/MemberList";
 
 const Layout = () => {
   const HTMLClassList = document.getElementsByTagName('html')[0].classList;
@@ -361,7 +362,8 @@ const Layout = () => {
           <Route path="events/event-list" element={<EventList />} />
 
           {/*Members*/}
-          <Route path="member/members" element={<Members />} />
+          {/*<Route path="member/members" element={<Members />} />*/}
+          <Route path="member/memberList" element={<MemberList />} />
 
           {/* Email */}
           <Route path="email/email-detail" element={<EmailDetail />} />

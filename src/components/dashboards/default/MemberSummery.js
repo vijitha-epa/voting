@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Button, Card, Col, Row, Table, Form, ProgressBar, Alert
+  Button, Card, Col, Row, Table, Form, ProgressBar, Alert, Badge
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -20,7 +20,7 @@ const Member = ({member, isPositive}) => {
   return (<tr className={classNames({'border-bottom border-200': true})}>
       <td>
         <Flex alignItems="center" className="position-relative">
-          <Avatar {...avatar} className={`status-${avatar.status}`} alt={edu_qualifications[0]}/>
+          <Avatar src={img} className={`status-online`} alt={edu_qualifications[0]} width="40"/>
           {/*<img className="rounded-1 border border-200" src={img} width="60" alt={edu_qualifications[0]} />*/}
           <div className="ms-3">
             <h6 className="mb-1 fw-semi-bold">
@@ -50,7 +50,7 @@ Member.propTypes = {
     img: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     avatar: PropTypes.object,
-    age: PropTypes.string.isRequired,
+    age: PropTypes.number.isRequired,
     edu_qualifications: PropTypes.array,
     prof_qualifications: PropTypes.array,
     rating: PropTypes.number.isRequired,
@@ -66,8 +66,8 @@ const MemberSummery = ({members, isPositive}) => {
       <Card.Body className="p-0">
         <Table borderless responsive className="mb-0 fs--1">
           <thead className="bg-light">
-          <tr className="text-900">
-            <th>Most {isPositive? 'loved': 'hated'} Member</th>
+          <tr className={(isPositive? " text-success bg-soft-success": " text-danger bg-soft-danger")}>
+            <th>Most {isPositive? 'loved': 'hated'} Members</th>
             <th className="text-end">Votes</th>
             <th className="pe-card text-end" style={{width: '8rem'}}>
               Rating
@@ -92,7 +92,7 @@ const MemberSummery = ({members, isPositive}) => {
           <Col xs="auto">
             <FalconCardFooterLink
               title="View All"
-              to="/member/members"
+              to="/member/memberList"
               size="sm"
             />
             {/*<Button variant="falcon-default" size="sm" as={Link} to="#!">*/}
