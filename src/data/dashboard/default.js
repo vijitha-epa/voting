@@ -61,11 +61,11 @@ export const members = [
     id: 1,
     img: member1,
     name: 'member 1',
-    avatar: {
-      src: team1,
-      size: '2xl',
-      status: 'online'
-    },
+    // avatar: {
+    //   src: team1,
+    //   size: '2xl',
+    //   status: 'online'
+    // },
     age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
@@ -78,11 +78,11 @@ export const members = [
     id: 2,
     img: member2,
     name: 'member 2',
-    avatar: {
-      src: team2,
-      size: '2xl',
-      status: 'online'
-    },
+    // avatar: {
+    //   src: team2,
+    //   size: '2xl',
+    //   status: 'online'
+    // },
     age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
@@ -95,11 +95,11 @@ export const members = [
     id: 3,
     img: member3,
     name: 'member 3',
-    avatar: {
-      src: team2,
-      size: '2xl',
-      status: 'online'
-    },
+    // avatar: {
+    //   src: team2,
+    //   size: '2xl',
+    //   status: 'online'
+    // },
     age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
@@ -112,11 +112,11 @@ export const members = [
     id: 4,
     img: member4,
     name: 'member 4',
-    avatar: {
-      src: team3,
-      size: '2xl',
-      status: 'away'
-    },
+    // avatar: {
+    //   src: team3,
+    //   size: '2xl',
+    //   status: 'away'
+    // },
     age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
@@ -129,11 +129,11 @@ export const members = [
     id: 5,
     img: member6,
     name: 'member 5',
-    avatar: {
-      src: team7,
-      size: '2xl',
-      status: 'offline'
-    },
+    // avatar: {
+    //   src: team7,
+    //   size: '2xl',
+    //   status: 'offline'
+    // },
     age: 60,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
@@ -146,11 +146,11 @@ export const members = [
     id: 6,
     img: member7,
     name: 'member 6',
-    avatar: {
-      src: team2,
-      size: '2xl',
-      status: 'online'
-    },
+    // avatar: {
+    //   src: team2,
+    //   size: '2xl',
+    //   status: 'online'
+    // },
     age: 69,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
@@ -159,37 +159,37 @@ export const members = [
     total_votes: 10,
     rating_history: [15, 22, 28, 20, 20, 35]
   },
-  {
-    id: 7,
-    img: member2,
-    name: 'member 7',
-    avatar: {
-      src: team6,
-      size: '2xl',
-      status: 'offline'
-    },
-    age: 65,
-    gender: 'm',
-    edu_qualifications: ['BSc', 'MSc'],
-    prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
-    rating: -8,
-    total_votes: 10,
-    rating_history: [15, 22, 28, 20, 20, 35]
-  },
+
   {
     id: 8,
     img: member4,
     name: 'member 8',
-    avatar: {
-      src: team4,
-      size: '2xl',
-      status: 'offline'
-    },
+    // avatar: {
+    //   src: team4,
+    //   size: '2xl',
+    //   status: 'offline'
+    // },
     age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: -7,
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
+  },{
+    id: 7,
+    img: member2,
+    name: 'member 7',
+    // avatar: {
+    //   src: team6,
+    //   size: '2xl',
+    //   status: 'offline'
+    // },
+    age: 65,
+    gender: 'm',
+    edu_qualifications: ['BSc', 'MSc'],
+    prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
+    rating: -8,
     total_votes: 10,
     rating_history: [15, 22, 28, 20, 20, 35]
   },

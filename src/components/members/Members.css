@@ -1,0 +1,32 @@
+.bg-plus-80 {
+    background-color: #239B56!important;
+    color: white!important;
+}
+.bg-plus-50 {
+    background-color: #2ECC71!important;
+    color: white!important;
+}
+.bg-plus-25 {
+    background-color: #82E0AA!important;
+    color: black!important;
+}
+.bg-plus-00 {
+    background-color: #D5F5E3!important;
+    color: black!important;
+}
+.bg-minus-25 {
+    background-color: #F5B7B1!important;
+    color: black!important;
+}
+.bg-minus-50 {
+    background-color: #EC7063!important;
+    color: white!important;
+}
+.bg-minus-75 {
+    background-color: #CB4335!important;
+    color: white!important;
+}
+.bg-minus-end {
+    background-color: #424949!important;
+    color: white!important;
+}

@@ -14,26 +14,27 @@ import FalconLink from 'components/common/FalconLink';
 import SimpleBarReact from 'simplebar-react';
 import { membersInfo } from "../../data/dashboard/projectManagement";
 import { members } from "../../data/dashboard/default";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import product10 from "../../assets/img/products/10.png";
 import team1 from "../../assets/img/team/1.jpg";
+import './Members.css'
 
-const getColorByNumber = (number) => {
-  if(number > 70)
-    return 'primary'
-  if(number > 60)
-    return 'secondary'
+const getColorByRating = (number) => {
+  if(number > 80)
+    return 'bg-plus-80'
   if(number > 50)
-    return 'success'
-  if(number > 40)
-    return 'info'
-  if(number > 30)
-    return 'warning'
-  if(number > 20)
-    return 'danger'
-  if(number > 10)
-    return 'light'
-
-  return 'dark'
+    return 'bg-plus-50'
+  if(number > 25)
+    return 'bg-plus-25'
+  if(number > 0)
+    return 'bg-plus-00'
+  if(number > -25)
+    return 'bg-minus-25'
+  if(number > -50)
+    return 'bg-minus-50'
+  if(number > -80)
+    return 'bg-minus-75'
+  return 'bg-minus-end'
 }
 
 const MembersRow = ({
@@ -49,8 +50,8 @@ const MembersRow = ({
   rating_history,
   isLast
 }) => {
-  const bgColor = getColorByNumber(100)
-  console.log("BG Color ", isLast, rating_history)
+  const bgColor = getColorByRating(rating * 10)
+  console.log("BG Color ", name, bgColor)
   return (
     <tr className={classNames({ 'border-bottom border-200': !isLast })}>
       <td>
@@ -65,59 +66,60 @@ const MembersRow = ({
           <div className="flex-1 ms-3">
             <h6 className="mb-0 fw-semi-bold">
               <Link className="text-dark stretched-link" to="#!">
-                {name}
+                {name} <i className="fa fa-star-half-o" aria-hidden="true"></i>
               </Link>
             </h6>
-            <p className="fw-semi-bold mb-0 text-500">{gender}/{age}</p>
+            <p className="fw-semi-bold mb-0 text-500">{gender}/{age}
+              <FontAwesomeIcon icon="star-half-alt"  />
+            </p>
             {/*<p className="fs--2 mb-0 text-500">{gender}/{age}</p>*/}
           </div>
         </Flex>
       </td>
       <td className="align-middle text-center fw-semi-bold">
-        <SoftBadge pill bg={bgColor}>
+        <SoftBadge pill bg={"primary"}>
           {edu_qualifications[0]}
         </SoftBadge>
       </td>
       <td className="align-middle text-center fw-semi-bold">
-        <SoftBadge pill bg={bgColor}>
+        <SoftBadge pill bg={"primary"}>
           {prof_qualifications[0]}
         </SoftBadge>
-        {/*<p className="fs--2 mb-0">{today.time}</p>*/}
+        {/*<p className="fs--2 mb-0">{10}</p>*/}
       </td>
       <td className="align-middle">
-        <Row className="g-2 justify-content-end">
+        <Row className="g-2 justify-content-center">
           <Col xs="auto">
-            <SoftBadge pill bg={bgColor} className="mb-3">
-              {rating}%
+            <SoftBadge pill className={"mb-2 " + bgColor }>
+              {rating * 10}%
+            </SoftBadge>
+            <SoftBadge pill bg={"primary"}>
+              by {total_votes} votes
             </SoftBadge>
             <Flex alignItems="center">
-              <ProgressBar now={rating * 10} style={{width: '80px', height: 5}} />
-              {/*<div className="fw-semi-bold ms-3">{rating * 10}%</div>*/}
+              <ProgressBar now={Math.abs(rating) * 10} style={{width: '80px', height: 5}} variant={rating > 0? 'info': 'warning'} />
             </Flex>
             {/*<p className="fs--2 mb-0">{'1h:52m'}</p>*/}
           </Col>
+        </Row>
+      </td>
+      <td className="align-middle text-center fw-semi-bold">
+        <Row className="g-2 justify-content-center">
           <Col xs="auto" className="mt-auto">
             <BasicECharts
               echarts={echarts}
               options={{
                 color: getColor('primary'),
-                tooltip: { show: false },
-                series: [
-                  {
-                    rating_history
-                  }
-                ]
+                tooltip: {show: false},
+                series: [{
+                  data: rating_history
+                }]
               }}
               className="mb-1"
-              style={{ width: '3.625rem', height: '1rem' }}
+              style={{width: '3.625rem', height: '1rem'}}
             />
           </Col>
         </Row>
-      </td>
-      <td className="align-middle text-center fw-semi-bold">
-        <SoftBadge pill bg={bgColor}>
-          {total_votes}
-        </SoftBadge>
       </td>
     </tr>
   );
@@ -140,8 +142,8 @@ const MemberList = () => {
                 <th>Member info</th>
                 <th className="text-center">Educational Qualifications</th>
                 <th className="text-center">Professional Qualifications</th>
-                <th className="text-end">Rating</th>
-                <th className="text-center">Total Votes</th>
+                <th className="text-center">Rating</th>
+                <th className="text-center">History</th>
               </tr>
             </thead>
             <tbody>
@@ -174,18 +176,6 @@ const MemberList = () => {
     </Card>
   );
 };
-
-// id,
-// img,
-// name,
-// age,
-// gender,
-// edu_qualifications,
-// prof_qualifications,
-// rating,
-// total_votes,
-// rating_history,
-// isLast
 
 MembersRow.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
