@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Avatar from 'components/common/Avatar';
 import Flex from 'components/common/Flex';
 import React, { useState } from 'react';
-import { Card, Col, Form, ProgressBar, Row, Table } from 'react-bootstrap';
+import { Badge, Card, Col, Form, ProgressBar, Row, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SoftBadge from 'components/common/SoftBadge';
 import PropTypes from 'prop-types';
@@ -21,40 +21,40 @@ import './Members.css'
 import Rating from "react-rating";
 
 const getColorByRating = (number) => {
-  if(number > 80)
+  if (number > 80)
     return 'bg-plus-80'
-  if(number > 50)
+  if (number > 50)
     return 'bg-plus-50'
-  if(number > 25)
+  if (number > 25)
     return 'bg-plus-25'
-  if(number > 0)
+  if (number > 0)
     return 'bg-plus-00'
-  if(number > -25)
+  if (number > -25)
     return 'bg-minus-25'
-  if(number > -50)
+  if (number > -50)
     return 'bg-minus-50'
-  if(number > -80)
+  if (number > -80)
     return 'bg-minus-75'
   return 'bg-minus-end'
 }
 
 const MembersRow = ({
-  id,
-  img,
-  name,
-  age,
-  gender,
-  edu_qualifications,
-  prof_qualifications,
-  rating,
-  total_votes,
-  rating_history,
-  isLast
-}) => {
+                      id,
+                      img,
+                      name,
+                      age,
+                      gender,
+                      edu_qualifications,
+                      prof_qualifications,
+                      rating,
+                      total_votes,
+                      rating_history,
+                      isLast
+                    }) => {
   const bgColor = getColorByRating(rating * 10)
-  console.log("BG Color ",gender, gender==='m')
+  console.log("BG Color ", id, gender, gender === 'm')
   return (
-    <tr className={classNames({ 'border-bottom border-200': !isLast })}>
+    <tr className={classNames({'border-bottom border-200': !isLast})}>
       <td>
         <Flex alignItems="center" className="position-relative">
           <Avatar
@@ -66,39 +66,52 @@ const MembersRow = ({
           />
           <div className="flex-1 ms-3">
             <h6 className="mb-0 fw-semi-bold">
-              <Link className="text-dark stretched-link" to="#!">
+              <Link className="text-dark stretched-link" to="#!" key={id}>
                 {name}
               </Link>
             </h6>
-            <p className = "fw-semi-bold mb-0 text-500">
-              <FontAwesomeIcon icon="mars" />{gender}/{age}</p>
+            {/*<p className = "fw-semi-bold mb-0 text-500">*/}
+            <Badge bg={gender === 'm' ? "primary": 'warning'}>
+              {gender}
+            </Badge>
+            <SoftBadge bg={"secondary"}>
+              {age}
+            </SoftBadge>
+            {/*</p>*/}
+
             {/*<p className="fs--2 mb-0 text-500">{gender}/{age}</p>*/}
           </div>
         </Flex>
       </td>
       <td className="align-middle text-center fw-semi-bold">
-        <SoftBadge pill bg={"primary"}>
-          {edu_qualifications[0]}
-        </SoftBadge>
+        {edu_qualifications.map((ed, index) =>
+          <SoftBadge pill className={"me-2"} bg={"primary"} key={index}>
+            {ed}
+          </SoftBadge>)}
+
       </td>
       <td className="align-middle text-center fw-semi-bold">
-        <SoftBadge pill bg={"primary"}>
-          {prof_qualifications[0]}
-        </SoftBadge>
+        {prof_qualifications.map((pro, index) =>
+          <SoftBadge pill className={"me-2"} bg={"primary"} key={index}>
+            {pro}
+          </SoftBadge>
+        )}
+
         {/*<p className="fs--2 mb-0">{10}</p>*/}
       </td>
       <td className="align-middle">
         <Row className="g-2 justify-content-center">
           <Col xs="auto">
-            <SoftBadge pill className={"mb-2 " + bgColor }>
+            <Badge className={"me-2 " + bgColor}>
               {rating * 10}%
-            </SoftBadge>
+            </Badge>
             <SoftBadge pill bg={"primary"}>
               by {total_votes} votes
             </SoftBadge>
             <Flex alignItems="center">
-              <Rating initialRating={Math.abs(rating)} fractions={2} readonly stop={10} className="hint--bottom hint--bounce" aria-label="Current rating"
-                      emptySymbol={<FontAwesomeIcon icon={['far','star']} className="text-warning" />}
+              <Rating initialRating={Math.abs(rating)} fractions={2} readonly stop={10}
+                      className="hint--bottom hint--bounce" aria-label="Current rating"
+                      emptySymbol={<FontAwesomeIcon icon={['far', 'star']} className="text-warning" />}
                       placeholderSymbol={<FontAwesomeIcon icon="star" className="text-danger" />}
                       fullSymbol={<FontAwesomeIcon icon="star" className="text-warning" />}
               />
@@ -121,7 +134,7 @@ const MembersRow = ({
                 }]
               }}
               className="mb-1"
-              style={{width: '8.625rem', height: '1rem'}}
+              style={{width: '10.625rem', height: '1rem'}}
             />
           </Col>
         </Row>
@@ -132,17 +145,17 @@ const MembersRow = ({
 
 const MemberList = () => {
 
-  const [data] = useState(membersInfo)
-  const [memberList] = useState(members)
-  return (
-    <Card className="h-100">
-      <Card.Body className="p-0">
-        <SimpleBarReact>
-          <Table
-            borderless
-            className="mb-0 fs--1 border-200 rounded-3 table-dashboard table-member-info"
-          >
-            <thead className="bg-light">
+    const [memberList] = useState(members)
+    // console.log("Members ", memberList)
+    return (
+      <Card className="h-100">
+        <Card.Body className="p-0">
+          <SimpleBarReact>
+            <Table
+              borderless
+              className="mb-0 fs--1 border-200 rounded-3 table-dashboard table-member-info"
+            >
+              <thead className="bg-light">
               <tr className="text-900">
                 <th>Member info</th>
                 <th className="text-center">Educational Qualifications</th>
@@ -150,36 +163,37 @@ const MemberList = () => {
                 <th className="text-center">Rating</th>
                 <th className="text-center">History</th>
               </tr>
-            </thead>
-            <tbody>
-              {memberList.map((info, index) => (
+              </thead>
+              <tbody>
+              {memberList.map((member, index) => (
                 <MembersRow
-                  {...info}
-                  isLast={index === data.length - 1}
-                  key={info.id}
+                  {...member}
+                  isLast={index === memberList.length - 1}
+                  key={member.id}
                 />
               ))}
-            </tbody>
-          </Table>
-        </SimpleBarReact>
-      </Card.Body>
+              </tbody>
+            </Table>
+          </SimpleBarReact>
+        </Card.Body>
 
-      <Card.Footer className="bg-light py-2">
-        <Row className="g-0 flex-between-center">
-          <Col xs="auto">
-            <Form.Select size="sm" className="me-2">
-              <option>Last 7 days</option>
-              <option>Last Month</option>
-              <option>Last Year</option>
-            </Form.Select>
-          </Col>
-          <Col xs="auto">
-            <FalconLink title="View All" className="px-0" />
-          </Col>
-        </Row>
-      </Card.Footer>
-    </Card>
-  );
+        <Card.Footer className="bg-light py-2">
+          <Row className="g-0 flex-between-center">
+            <Col xs="auto">
+              <Form.Select size="sm" className="me-2">
+                <option>Last 7 days</option>
+                <option>Last Month</option>
+                <option>Last Year</option>
+              </Form.Select>
+            </Col>
+            <Col xs="auto">
+              <FalconLink title="View All" className="px-0" />
+            </Col>
+          </Row>
+        </Card.Footer>
+      </Card>
+    )
+  // };
 };
 
 MembersRow.propTypes = {
@@ -193,7 +207,7 @@ MembersRow.propTypes = {
   prof_qualifications: PropTypes.array.isRequired,
   rating: PropTypes.number.isRequired,
   total_votes: PropTypes.number.isRequired,
-  rating_history: PropTypes.array.isRequired
+  rating_history: PropTypes.array.isRequired,
 };
 
 // MemberList.propTypes = {
