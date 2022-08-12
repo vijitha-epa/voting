@@ -8,6 +8,8 @@ import Flex from 'components/common/Flex';
 import classNames from 'classnames';
 import Avatar from "../../common/Avatar";
 import FalconCardFooterLink from "../../common/FalconCardFooterLink";
+import Rating from "react-rating";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const getMembers = (members, isPositive) => members
   .filter(member => isPositive? member.rating > 0: member.rating <= 0)
@@ -16,13 +18,14 @@ const getMembers = (members, isPositive) => members
 
 const Member = ({member, isPositive}) => {
   const {img, name, age, gender, rating, avatar, edu_qualifications, total_votes} = member;
-  console.log('isPositive', isPositive)
-  return (<tr className={classNames({'border-bottom border-200': true})}>
+  console.log('isPositive', rating)
+  return (
+    <tr className={classNames({'border-bottom border-200': true})}>
       <td>
         <Flex alignItems="center" className="position-relative">
-          <Avatar src={img} className={`status-online`} alt={edu_qualifications[0]} width="40"/>
+          <Avatar src={img} className={`status-online`} alt={edu_qualifications[0]} width="40" size="3xl"/>
           {/*<img className="rounded-1 border border-200" src={img} width="60" alt={edu_qualifications[0]} />*/}
-          <div className="ms-3">
+          <div className="ms-3 hint--bottom hint--bounce" aria-label="Name, Gender and Age">
             <h6 className="mb-1 fw-semi-bold">
               <Link className="text-dark stretched-link" to="#!">
                 {name}
@@ -37,7 +40,13 @@ const Member = ({member, isPositive}) => {
       </td>
       <td className="align-middle pe-card">
         <Flex alignItems="center">
-          <ProgressBar now={rating * 10} style={{width: '80px', height: 5}} variant={isPositive? 'info': 'warning'} />
+            <Rating initialRating={rating} fractions={2} readonly stop={10} className="hint--bottom hint--bounce" aria-label="Current rating"
+            emptySymbol={<FontAwesomeIcon icon={['far','star']} className="text-warning" />}
+            placeholderSymbol={<FontAwesomeIcon icon="star" className="text-danger" />}
+            fullSymbol={<FontAwesomeIcon icon="star" className="text-warning" />}
+            />
+            {/*<ProgressBar now={rating * 10} style={{width: '80px', height: 5}} variant={isPositive? 'info': 'warning'} />*/}
+
           <div className="fw-semi-bold ms-3">{rating * 10}%</div>
         </Flex>
       </td>

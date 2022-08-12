@@ -1,17 +1,17 @@
 .bg-plus-80 {
-    background-color: #239B56!important;
-    color: white!important;
+    background-color: #00CC00!important;
+    color: black!important;
 }
 .bg-plus-50 {
-    background-color: #2ECC71!important;
-    color: white!important;
+    background-color: #66DD66!important;
+    color: black!important;
 }
 .bg-plus-25 {
-    background-color: #82E0AA!important;
+    background-color: #99FF99!important;
     color: black!important;
 }
 .bg-plus-00 {
-    background-color: #D5F5E3!important;
+    background-color: #CCFFCC!important;
     color: black!important;
 }
 .bg-minus-25 {
@@ -23,10 +23,10 @@
     color: white!important;
 }
 .bg-minus-75 {
-    background-color: #CB4335!important;
+    background-color: #ff0000!important;
     color: white!important;
 }
 .bg-minus-end {
-    background-color: #424949!important;
+    background-color: #990000 !important;
     color: white!important;
 }

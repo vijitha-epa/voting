@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import product10 from "../../assets/img/products/10.png";
 import team1 from "../../assets/img/team/1.jpg";
 import './Members.css'
+import Rating from "react-rating";
 
 const getColorByRating = (number) => {
   if(number > 80)
@@ -51,14 +52,14 @@ const MembersRow = ({
   isLast
 }) => {
   const bgColor = getColorByRating(rating * 10)
-  console.log("BG Color ", name, bgColor)
+  console.log("BG Color ",gender, gender==='m')
   return (
     <tr className={classNames({ 'border-bottom border-200': !isLast })}>
       <td>
         <Flex alignItems="center" className="position-relative">
           <Avatar
             className={`status-online`} // status-offline, status-away
-            size="2xl"
+            size="4xl"
             src={img}
             width="60"
             alt={name}
@@ -66,12 +67,11 @@ const MembersRow = ({
           <div className="flex-1 ms-3">
             <h6 className="mb-0 fw-semi-bold">
               <Link className="text-dark stretched-link" to="#!">
-                {name} <i className="fa fa-star-half-o" aria-hidden="true"></i>
+                {name}
               </Link>
             </h6>
-            <p className="fw-semi-bold mb-0 text-500">{gender}/{age}
-              <FontAwesomeIcon icon="star-half-alt"  />
-            </p>
+            <p className = "fw-semi-bold mb-0 text-500">
+              <FontAwesomeIcon icon="mars" />{gender}/{age}</p>
             {/*<p className="fs--2 mb-0 text-500">{gender}/{age}</p>*/}
           </div>
         </Flex>
@@ -97,7 +97,12 @@ const MembersRow = ({
               by {total_votes} votes
             </SoftBadge>
             <Flex alignItems="center">
-              <ProgressBar now={Math.abs(rating) * 10} style={{width: '80px', height: 5}} variant={rating > 0? 'info': 'warning'} />
+              <Rating initialRating={Math.abs(rating)} fractions={2} readonly stop={10} className="hint--bottom hint--bounce" aria-label="Current rating"
+                      emptySymbol={<FontAwesomeIcon icon={['far','star']} className="text-warning" />}
+                      placeholderSymbol={<FontAwesomeIcon icon="star" className="text-danger" />}
+                      fullSymbol={<FontAwesomeIcon icon="star" className="text-warning" />}
+              />
+              {/*<ProgressBar now={Math.abs(rating) * 10} style={{width: '80px', height: 5}} variant={rating > 0? 'info': 'warning'} />*/}
             </Flex>
             {/*<p className="fs--2 mb-0">{'1h:52m'}</p>*/}
           </Col>
@@ -116,7 +121,7 @@ const MembersRow = ({
                 }]
               }}
               className="mb-1"
-              style={{width: '3.625rem', height: '1rem'}}
+              style={{width: '8.625rem', height: '1rem'}}
             />
           </Col>
         </Row>
