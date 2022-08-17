@@ -59,6 +59,7 @@ export const totalSales = [
 export const members = [
   {
     id: 1,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. A',
     img: member1,
     name: 'member 1',
     age: 65,
@@ -71,6 +72,7 @@ export const members = [
   },
   {
     id: 2,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. B',
     img: member2,
     name: 'member 2',
     age: 65,
@@ -83,6 +85,7 @@ export const members = [
   },
   {
     id: 3,
+    description: '',
     img: member3,
     name: 'member 3',
     age: 65,
@@ -95,6 +98,9 @@ export const members = [
   },
   {
     id: 4,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. ' +
+      'Some quick example text to build on the card title and make up the bulk of the card\'s content. ' +
+      'Some quick example text to build on the card title and make up the bulk of the card\'s content. A',
     img: member4,
     name: 'member 4',
     age: 65,
@@ -107,6 +113,7 @@ export const members = [
   },
   {
     id: 5,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. c',
     img: member6,
     name: 'member 5',
     age: 60,
@@ -119,6 +126,7 @@ export const members = [
   },
   {
     id: 6,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.d',
     img: member7,
     name: 'member 6',
     age: 69,
@@ -129,9 +137,9 @@ export const members = [
     total_votes: 10,
     rating_history: [15, 22, 28, 20, 20, 35]
   },
-
   {
     id: 8,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. e',
     img: member4,
     name: 'member 8',
     age: 65,
@@ -143,6 +151,7 @@ export const members = [
     rating_history: [15, 22, 28, 20, 20, 35]
   },{
     id: 7,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. f',
     img: member2,
     name: 'member 7',
     age: 65,
