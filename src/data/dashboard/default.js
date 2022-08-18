@@ -59,98 +59,76 @@ export const totalSales = [
 export const members = [
   {
     id: 1,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. A',
     img: member1,
     name: 'member 1',
-    // avatar: {
-    //   src: team1,
-    //   size: '2xl',
-    //   status: 'online'
-    // },
+    age: 65,
+    gender: 'm',
+    edu_qualifications: ['BSc', 'MSc'],
+    prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
+    rating: 1,
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
+  },
+  {
+    id: 2,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. B',
+    img: member2,
+    name: 'member 2',
+    age: 65,
+    gender: 'm',
+    edu_qualifications: ['BSc', 'MSc'],
+    prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
+    rating: 3,
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
+  },
+  {
+    id: 3,
+    description: '',
+    img: member3,
+    name: 'member 3',
+    age: 65,
+    gender: 'm',
+    edu_qualifications: ['BSc', 'MSc'],
+    prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
+    rating: -4,
+    total_votes: 10,
+    rating_history: [15, 22, 28, 20, 20, 35]
+  },
+  {
+    id: 4,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. ' +
+      'Some quick example text to build on the card title and make up the bulk of the card\'s content. ' +
+      'Some quick example text to build on the card title and make up the bulk of the card\'s content. A',
+    img: member4,
+    name: 'member 4',
     age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
     rating: 6,
     total_votes: 10,
-    rating_history: [15, 22, 28, 20, 20, 35]
-  },
-  {
-    id: 2,
-    img: member2,
-    name: 'member 2',
-    // avatar: {
-    //   src: team2,
-    //   size: '2xl',
-    //   status: 'online'
-    // },
-    age: 65,
-    gender: 'm',
-    edu_qualifications: ['BSc', 'MSc'],
-    prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
-    rating: 7,
-    total_votes: 10,
-    rating_history: [15, 22, 28, 20, 20, 35]
-  },
-  {
-    id: 3,
-    img: member3,
-    name: 'member 3',
-    // avatar: {
-    //   src: team2,
-    //   size: '2xl',
-    //   status: 'online'
-    // },
-    age: 65,
-    gender: 'm',
-    edu_qualifications: ['BSc', 'MSc'],
-    prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
-    rating: -8,
-    total_votes: 10,
-    rating_history: [15, 22, 28, 20, 20, 35]
-  },
-  {
-    id: 4,
-    img: member4,
-    name: 'member 4',
-    // avatar: {
-    //   src: team3,
-    //   size: '2xl',
-    //   status: 'away'
-    // },
-    age: 65,
-    gender: 'm',
-    edu_qualifications: ['BSc', 'MSc'],
-    prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
-    rating: 9,
-    total_votes: 10,
-    rating_history: [15, 22, 28, 20, 20, 35]
+    rating_history: [15, 22, 28, 20, 20, 35, 30, 25, 88]
   },
   {
     id: 5,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. c',
     img: member6,
     name: 'member 5',
-    // avatar: {
-    //   src: team7,
-    //   size: '2xl',
-    //   status: 'offline'
-    // },
     age: 60,
-    gender: 'm',
+    gender: 'f',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
-    rating: 10,
+    rating: 9.4,
     total_votes: 10,
     rating_history: [15, 22, 28, 20, 20, 35]
   },
   {
     id: 6,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.d',
     img: member7,
     name: 'member 6',
-    // avatar: {
-    //   src: team2,
-    //   size: '2xl',
-    //   status: 'online'
-    // },
     age: 69,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
@@ -159,32 +137,23 @@ export const members = [
     total_votes: 10,
     rating_history: [15, 22, 28, 20, 20, 35]
   },
-
   {
     id: 8,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. e',
     img: member4,
     name: 'member 8',
-    // avatar: {
-    //   src: team4,
-    //   size: '2xl',
-    //   status: 'offline'
-    // },
     age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
     prof_qualifications: ['Journalist for 6 years in ABC', 'Lawyer practice for 4 years'],
-    rating: -7,
+    rating: -6,
     total_votes: 10,
     rating_history: [15, 22, 28, 20, 20, 35]
   },{
     id: 7,
+    description: 'Some quick example text to build on the card title and make up the bulk of the card\'s content. f',
     img: member2,
     name: 'member 7',
-    // avatar: {
-    //   src: team6,
-    //   size: '2xl',
-    //   status: 'offline'
-    // },
     age: 65,
     gender: 'm',
     edu_qualifications: ['BSc', 'MSc'],
