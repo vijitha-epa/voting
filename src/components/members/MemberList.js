@@ -23,6 +23,8 @@ import team1 from "../../assets/img/team/1.jpg";
 import './Members.css'
 import Rating from "react-rating";
 import { CloseButton } from "../common/Toast";
+import Member from "./Member";
+import MemberModal from "./MemberModal";
 
 const getColorByRating = (number) => {
   if (number > 80) return 'bg-plus-80'
@@ -35,40 +37,18 @@ const getColorByRating = (number) => {
   return 'bg-minus-end'
 }
 
-const Actions = () => (
-  <div className="end-0 top-50 pe-3 translate-middle-y hover-actions">
-    <Button variant="light" size="sm" className="border-300 me-1 text-600 hint--left hint--bounce" aria-label="Download evidence">
-      <FontAwesomeIcon icon="file-alt" style={{color: 'dodgerblue'}}/>
-    </Button>
-    {/*<Button variant="light" size="sm" className="border-300 text-600">*/}
-    {/*  <FontAwesomeIcon icon="trash-alt" />*/}
-    {/*</Button>*/}
-  </div>
-);
 
-const MembersRow = ({
-                      id,
-                      description,
-                      img,
-                      name,
-                      age,
-                      gender,
-                      edu_qualifications,
-                      prof_qualifications,
-                      rating,
-                      total_votes,
-                      rating_history,
-                      isLast
-                    }) => {
+
+const MembersRow = ({member, isLast}) => {
+  // console.log("In Member raw ", member)
+  const {id, img, name, age, gender, edu_qualifications, prof_qualifications, rating, total_votes, rating_history} = member
   const bgColor = getColorByRating(rating * 10)
   // const [memberId, setMemberId] = useState(id)
   const [show, setShow] = useState(false)
 
-  console.log("BG Color ", id, gender, gender === 'm')
-  return (<>
-
-
-      <tr className={classNames({'border-bottom border-200': !isLast})}>
+  return (
+    // <>
+      <tr className={classNames({'border-bottom border-200': !isLast})} key={id}>
         <td>
           <Flex alignItems="center" className="position-relative">
             <Avatar
@@ -153,174 +133,18 @@ const MembersRow = ({
             </Col>
           </Row>
         </td>
+        <MemberModal member={member} show={show} showModal={setShow} />
       </tr>
-
-      <Modal show={show} size="lg" fullscreen={"lg-down"} onHide={() => setShow(false)}>
-        <Modal.Header>
-          <Modal.Title>Member Details</Modal.Title>
-          <CloseButton
-            className="btn btn-circle btn-sm transition-base p-0"
-            onClick={() => setShow(false)}
-          />
-        </Modal.Header>
-        <Modal.Body>
-          <Row className="g-0 flex-between-center">
-            <Col md="auto">
-              <Card bg={"light"} text={"dark"} style={{width: '23.5rem'}}>
-                <Card.Img src={img} variant='top' />
-                <Card.Body>
-                  <Card.Title>{name}</Card.Title>
-                  <Card.Text>
-                    {description}
-                  </Card.Text>
-                  {/*<Row className="g-2 justify-content-around">*/}
-                  {/*  <Col xs="auto">*/}
-                  <Flex alignItems="center">
-                    <Rating initialRating={Math.abs(rating)} readonly stop={10}
-                            className="hint--bottom hint--bounce" aria-label="Current rating"
-                            emptySymbol={<FontAwesomeIcon icon={['far', 'star']} className="text-warning" />}
-                            placeholderSymbol={<FontAwesomeIcon icon="star" className="text-danger" />}
-                            fullSymbol={<FontAwesomeIcon icon="star" className="text-warning" />}
-                    />
-                  </Flex>
-                  {/*  </Col>*/}
-                  {/*</Row>*/}
-                </Card.Body>
-                {/*<ListGroup className="list-group-flush">*/}
-                {/*  <ListGroupItem onClick={() => console.log("Clicked ss")}><a href="#">Educational*/}
-                {/*    Qualification</a></ListGroupItem>*/}
-                {/*  <ListGroupItem onClick={() => console.log("Clicked ss")}><a href="#">Professional*/}
-                {/*    Qualifications</a></ListGroupItem>*/}
-                {/*  <ListGroupItem onClick={() => console.log("Clicked ss")}><a href="#">Black marks</a></ListGroupItem>*/}
-                {/*  <ListGroupItem onClick={() => console.log("Clicked ss")}><a href="#">Rating</a></ListGroupItem>*/}
-                {/*  <ListGroupItem onClick={() => console.log("Clicked ss")}><a href="#">Reviews</a></ListGroupItem>*/}
-                {/*  <Card.Body>*/}
-                {/*    <Card.Link href="#">{"< Prev Member 1"}</Card.Link>*/}
-                {/*    <Card.Link className={"text-start"} href="#">{"Next Member 3 >"}</Card.Link>*/}
-                {/*  </Card.Body>*/}
-                {/*</ListGroup>*/}
-
-                <Row className="g-2 justify-content-around hint--bottom hint--bounce" aria-label="Rating History">
-                  <Col xs="auto">
-                    <BasicECharts
-                      echarts={echarts}
-                      options={{
-                        color: getColor('primary'), tooltip: {show: false}, series: [{
-                          data: rating_history
-                        }]
-                      }}
-                      className="mb-1"
-                      style={{width: '20.625rem', height: '3rem'}}
-                    />
-                  </Col>
-                </Row>
-              </Card>
-
-            </Col>
-            <Col md="auto">
-              <Card style={{width: '23.5rem'}}>
-                {/*<Card.Body>*/}
-                  <Accordion defaultActiveKey="0" flush>
-                    <Accordion.Item eventKey="0">
-                      <Accordion.Header>Educational Qualifications</Accordion.Header>
-                      <Accordion.Body>
-                        {edu_qualifications.map((ed, index) =>
-                          <SoftBadge pill className={"me-2"} bg={"primary"} key={index}>
-                          {ed}
-                        </SoftBadge>)}
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="1">
-                      <Accordion.Header>Professional Qualifications</Accordion.Header>
-                      <Accordion.Body>
-                        {prof_qualifications.map((pro, index) => <SoftBadge pill className={"me-2"} bg={"primary"} key={index}>
-                          {pro}
-                        </SoftBadge>)}
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="2">
-                      <Accordion.Header>praises</Accordion.Header>
-                      <Accordion.Body>
-                        <Table hover responsive>
-                          {/*<thead>*/}
-                          {/*<tr>*/}
-                          {/*  <th scope="col">Name</th>*/}
-                          {/*  <th scope="col">Email</th>*/}
-                          {/*  <th scope="col"></th>*/}
-                          {/*</tr>*/}
-                          {/*</thead>*/}
-                          <tbody>
-                          {['Is a good boy', 'was the master in the class'].map((pro, index) =>
-                          <tr className="hover-actions-trigger">
-                            <td>{pro}</td>
-                            <td className="w-auto">
-                              <Actions />
-                            </td>
-                          </tr>
-                            )}
-                          </tbody>
-                        </Table>
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="3">
-                      <Accordion.Header>condemn</Accordion.Header>
-                      <Accordion.Body>
-                        <Table hover responsive>
-                          <tbody>
-                          {['In jail for 4 years', 'famous liquor seller', 'Money laundry'].map((pro, index) =>
-                            <tr className="hover-actions-trigger">
-                              <td>{pro}</td>
-                              <td className="w-auto">
-                                <Actions />
-                              </td>
-                            </tr>
-                          )}
-                          </tbody>
-                        </Table>
-                      </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="4">
-                      <Accordion.Header>Reviews</Accordion.Header>
-                      <Accordion.Body>
-                        {prof_qualifications.map((pro, index) => <SoftBadge pill className={"me-2"} bg={"primary"} key={index}>
-                          {pro}
-                        </SoftBadge>)}
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-              </Card>
-            </Col>
-          </Row>
-
-        </Modal.Body>
-        <Modal.Footer>
-          <Nav className="justify-content-start" onSelect={(selectedKey) => console.log('selected ' + selectedKey)}>
-            <Nav.Item>
-              <Nav.Link eventKey="prev">{"<Previous Member"}</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="next">{"Next Member>"}</Nav.Link>
-            </Nav.Item>
-            {/*<Nav.Item>*/}
-            {/*  <Nav.Link eventKey="disabled" disabled>*/}
-            {/*    Disabled*/}
-            {/*  </Nav.Link>*/}
-            {/*</Nav.Item>*/}
-          </Nav>
-          <Button variant="secondary" onClick={() => setShow(false)}>
-            Close
-          </Button>
-          <Button variant="primary">Understood</Button>
-        </Modal.Footer>
-      </Modal>
-    </>);
+    // </>
+  );
 };
 
 const MemberList = () => {
 
   const [memberList] = useState(members)
   // console.log("Members ", memberList)
-  return (<Card className="h-100">
+  return (
+    <Card className="h-100">
       <Card.Body className="p-0">
         <SimpleBarReact>
           <Table
@@ -337,10 +161,10 @@ const MemberList = () => {
             </tr>
             </thead>
             <tbody>
-            {memberList.map((member, index) => (<MembersRow
-                {...member}
+            {memberList.map((member, index) => (
+              <MembersRow member={member}
                 isLast={index === memberList.length - 1}
-                key={member.id}
+                key={index}
               />))}
             </tbody>
           </Table>
@@ -366,22 +190,9 @@ const MemberList = () => {
 };
 
 MembersRow.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  description: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  isLast: PropTypes.bool,
-  img: PropTypes.string.isRequired,
-  age: PropTypes.number.isRequired,
-  gender: PropTypes.string.isRequired,
-  edu_qualifications: PropTypes.array.isRequired,
-  prof_qualifications: PropTypes.array.isRequired,
-  rating: PropTypes.number.isRequired,
-  total_votes: PropTypes.number.isRequired,
-  rating_history: PropTypes.array.isRequired,
+  member: Member.propTypes.member,
+  isLast: PropTypes.bool
 };
 
-// MemberList.propTypes = {
-//   data: PropTypes.array.isRequired
-// };
 
 export default MemberList;
