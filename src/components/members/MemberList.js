@@ -38,8 +38,8 @@ const getColorByRating = (number) => {
 }
 
 
-const MembersRow = ({member, isLast, openMemberDetailModal}) => {
-  // console.log("In Member raw ", member)
+const MembersRow = ({member, isLast, openMemberDetailModal, index}) => {
+  // console.log("In Member raw ", index)
   const {id, img, name, age, gender, edu_qualifications, prof_qualifications, rating, total_votes, rating_history} = member
   const bgColor = getColorByRating(rating * 10)
 
@@ -57,7 +57,7 @@ const MembersRow = ({member, isLast, openMemberDetailModal}) => {
           />
           <div className="flex-1 ms-3">
             <h6 className="mb-0 fw-semi-bold">
-              <Button variant='falcon-default' onClick={() => openMemberDetailModal(member)}
+              <Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}
                       className='me-2 mb-1 stretched-link'>
                 {name}
               </Button>
@@ -134,16 +134,39 @@ const MembersRow = ({member, isLast, openMemberDetailModal}) => {
 
 const MemberList = () => {
 
-  const [curMember, setCurMember] = useState({})
-  const [showModal, setShowModal] = useState(false)
+
   const [memberList] = useState(members)
+  const [curMember, setCurMember] = useState(memberList[1])
+  const [showModal, setShowModal] = useState(false)
+  // const [prevIndex, setPrevIndex] = useState(0)
+  const [curIndex, setCurIndex] = useState(1)
+  // const [nextIndex, setNextIndex] = useState(2)
   // console.log("Members ", memberList)
 
-  const openMemberDetailModal = (member) => {
-    setCurMember(member)
+  const openMemberDetailModal = (index) => {
+    setCurMember(members[index])
     setShowModal(true)
+
+    setCurIndex(index)
+    // setPrevIndex(index - 1)
+    // setNextIndex(index + 1)
   }
 
+  const loadNextMember = (newIndex) => {
+    console.log("setting member ", newIndex)
+      setCurIndex(newIndex)
+      // setPrevIndex(curIndex)
+      // setNextIndex(curIndex + 2)
+      setCurMember(members[newIndex])
+    // } else {
+    //   setCurIndex(curIndex - 1)
+    //   setPrevIndex(curIndex - 2)
+    //   setNextIndex(curIndex)
+    //   setCurMember(members[curIndex - 1])
+    // }
+  }
+
+  console.log("Rendering ", curIndex, members.length)
   return (
     <Card className="h-100">
       <Card.Body className="p-0">
@@ -163,6 +186,7 @@ const MemberList = () => {
               <MembersRow member={member}
                           isLast={index === memberList.length - 1}
                           openMemberDetailModal={openMemberDetailModal}
+                          index={index}
                           key={index}
               />))}
             </tbody>
@@ -185,18 +209,18 @@ const MemberList = () => {
         </Row>
       </Card.Footer>
       {showModal &&
-        <MemberModal member={curMember} show={showModal} showModal={setShowModal} />
+        <MemberModal member={curMember} show={showModal} showModal={setShowModal} moveToMember={loadNextMember}
+                     noOfMembers={members.length} curIndex={curIndex}/>
       }
-
     </Card>
-
   )
 };
 
 MembersRow.propTypes = {
   member: Member.propTypes.member,
   isLast: PropTypes.bool,
-  openMemberDetailModal: PropTypes.func.isRequired
+  openMemberDetailModal: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired
 };
 
 export default MemberList;
