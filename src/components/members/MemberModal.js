@@ -21,8 +21,8 @@ const Actions = () => (
   </div>
 );
 
-const MemberModal = ({member, show, showModal, prevMember, nextMember}) => {
-  console.log("In Modal ", show, member)
+const MemberModal = ({member, show, showModal, moveToMember, noOfMembers, curIndex}) => {
+  // console.log("In Modal ", show, member)
   const {id, description, img, name, age, edu_qualifications, prof_qualifications, rating, rating_history, total_votes} = member
   return (
     <Modal show={show} size="lg" fullscreen={"lg-down"} onHide={() => showModal(false)}>
@@ -164,12 +164,15 @@ const MemberModal = ({member, show, showModal, prevMember, nextMember}) => {
 
       </Modal.Body>
       <Modal.Footer>
-        <Nav className="justify-content-start" onSelect={(selectedKey) => console.log('selected ' + selectedKey)}>
+        <Nav className="justify-content-start" onSelect={(selectedKey) => {
+          console.log('selected ', selectedKey)
+          return moveToMember("prev" === selectedKey? (curIndex - 1): (curIndex + 1))
+        }}>
           <Nav.Item>
-            <Nav.Link eventKey="prev">{"<Previous Member"}</Nav.Link>
+            <Nav.Link eventKey="prev" disabled={curIndex <= 0}>{"<Previous Member"}</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="next">{"Next Member>"}</Nav.Link>
+            <Nav.Link eventKey="next" disabled={curIndex + 1 >= noOfMembers}>{"Next Member>"}</Nav.Link>
           </Nav.Item>
           {/*<Nav.Item>*/}
           {/*  <Nav.Link eventKey="disabled" disabled>*/}
@@ -180,7 +183,7 @@ const MemberModal = ({member, show, showModal, prevMember, nextMember}) => {
         <Button variant="secondary" onClick={() => showModal(false)}>
           Close
         </Button>
-        <Button variant="primary">Understood</Button>
+        <Button variant="primary">Save</Button>
       </Modal.Footer>
     </Modal>
 
@@ -193,8 +196,9 @@ MemberModal.propTypes = {
   // isPositive: PropTypes.bool.isRequired,
   show: PropTypes.bool.isRequired,
   showModal: PropTypes.func.isRequired,
-  prevMember: PropTypes.number,
-  nextMember: PropTypes.number
+  curIndex: PropTypes.number,
+  noOfMembers: PropTypes.number,
+  moveToMember: PropTypes.func
 };
 
 export default MemberModal

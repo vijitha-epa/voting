@@ -38,119 +38,140 @@ const getColorByRating = (number) => {
 }
 
 
-
-const MembersRow = ({member, isLast}) => {
-  // console.log("In Member raw ", member)
+const MembersRow = ({member, isLast, openMemberDetailModal, index}) => {
+  // console.log("In Member raw ", index)
   const {id, img, name, age, gender, edu_qualifications, prof_qualifications, rating, total_votes, rating_history} = member
   const bgColor = getColorByRating(rating * 10)
-  // const [memberId, setMemberId] = useState(id)
-  const [show, setShow] = useState(false)
 
   return (
     // <>
-      <tr className={classNames({'border-bottom border-200': !isLast})} key={id}>
-        <td>
-          <Flex alignItems="center" className="position-relative">
-            <Avatar
-              className={`status-online`} // status-offline, status-away
-              size="4xl"
-              src={img}
-              width="60"
-              alt={name}
-            />
-            <div className="flex-1 ms-3">
-              <h6 className="mb-0 fw-semi-bold">
-                {/*<Link className="text-dark stretched-link" to={"member/memberDetails/" + id} key={id}>*/}
-                {/*<Badge bg={"secondary"} onClick={() => setShow(true)}>{name}</Badge>*/}
-                <Button variant='falcon-default' onClick={() => setShow(true)} className='me-2 mb-1 stretched-link'>
-                  {/*<Badge bg={"light"} onClick={() => setShow(true)}>*/}
-                  {name}
-                  {/*</Badge>*/}
-                </Button>
-                {/*</Link>*/}
-              </h6>
-              {/*<p className = "fw-semi-bold mb-0 text-500">*/}
-              <Badge bg={gender === 'm' ? "primary" : 'warning'}>
-                {gender}
-              </Badge>
-              <SoftBadge bg={"secondary"}>
-                {age}
-              </SoftBadge>
-              {/*</p>*/}
+    <tr className={classNames({'border-bottom border-200': !isLast})} key={id}>
+      <td>
+        <Flex alignItems="center" className="position-relative">
+          <Avatar
+            className={`status-online`} // status-offline, status-away
+            size="4xl"
+            src={img}
+            width="60"
+            alt={name}
+          />
+          <div className="flex-1 ms-3">
+            <h6 className="mb-0 fw-semi-bold">
+              <Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}
+                      className='me-2 mb-1 stretched-link'>
+                {name}
+              </Button>
+              {/*</Link>*/}
+            </h6>
+            {/*<p className = "fw-semi-bold mb-0 text-500">*/}
+            <Badge bg={gender === 'm' ? "primary" : 'warning'}>
+              {gender}
+            </Badge>
+            <SoftBadge bg={"secondary"}>
+              {age}
+            </SoftBadge>
+            {/*</p>*/}
 
-              {/*<p className="fs--2 mb-0 text-500">{gender}/{age}</p>*/}
-            </div>
-          </Flex>
-        </td>
-        <td className="align-middle text-center fw-semi-bold">
-          {edu_qualifications.map((ed, index) => <SoftBadge pill className={"me-2"} bg={"primary"} key={index}>
-            {ed}
-          </SoftBadge>)}
+            {/*<p className="fs--2 mb-0 text-500">{gender}/{age}</p>*/}
+          </div>
+        </Flex>
+      </td>
+      <td className="align-middle text-center fw-semi-bold">
+        {edu_qualifications.map((ed, index) => <SoftBadge pill className={"me-2"} bg={"primary"} key={index}>
+          {ed}
+        </SoftBadge>)}
 
-        </td>
-        <td className="align-middle text-center fw-semi-bold">
-          {prof_qualifications.map((pro, index) => <SoftBadge pill className={"me-2"} bg={"primary"} key={index}>
-            {pro}
-          </SoftBadge>)}
+      </td>
+      <td className="align-middle text-center fw-semi-bold">
+        {prof_qualifications.map((pro, index) => <SoftBadge pill className={"me-2"} bg={"primary"} key={index}>
+          {pro}
+        </SoftBadge>)}
 
-          {/*<p className="fs--2 mb-0">{10}</p>*/}
-        </td>
-        <td className="align-middle">
-          <Row className="g-2 justify-content-center">
-            <Col xs="auto">
-              <Badge className={"me-2 " + bgColor}>
-                {rating * 10}%
-              </Badge>
-              <SoftBadge pill bg={"primary"}>
-                by {total_votes} votes
-              </SoftBadge>
-              <Flex alignItems="center">
-                <Rating initialRating={Math.abs(rating)} fractions={2} readonly stop={10}
-                        className="hint--bottom hint--bounce" aria-label="Current rating"
-                        emptySymbol={<FontAwesomeIcon icon={['far', 'star']} className="text-warning" />}
-                        placeholderSymbol={<FontAwesomeIcon icon="star" className="text-danger" />}
-                        fullSymbol={<FontAwesomeIcon icon="star" className="text-warning" />}
-                />
-                {/*<ProgressBar now={Math.abs(rating) * 10} style={{width: '80px', height: 5}} variant={rating > 0? 'info': 'warning'} />*/}
-              </Flex>
-              {/*<p className="fs--2 mb-0">{'1h:52m'}</p>*/}
-            </Col>
-          </Row>
-        </td>
-        <td className="align-middle text-center fw-semi-bold">
-          <Row className="g-2 justify-content-center">
-            <Col xs="auto" className="mt-auto">
-              <BasicECharts
-                echarts={echarts}
-                options={{
-                  color: getColor('primary'), tooltip: {show: false}, series: [{
-                    data: rating_history
-                  }]
-                }}
-                className="mb-1"
-                style={{width: '10.625rem', height: '1rem'}}
+        {/*<p className="fs--2 mb-0">{10}</p>*/}
+      </td>
+      <td className="align-middle">
+        <Row className="g-2 justify-content-center">
+          <Col xs="auto">
+            <Badge className={"me-2 " + bgColor}>
+              {rating * 10}%
+            </Badge>
+            <SoftBadge pill bg={"primary"}>
+              by {total_votes} votes
+            </SoftBadge>
+            <Flex alignItems="center">
+              <Rating initialRating={Math.abs(rating)} fractions={2} readonly stop={10}
+                      className="hint--bottom hint--bounce" aria-label="Current rating"
+                      emptySymbol={<FontAwesomeIcon icon={['far', 'star']} className="text-warning" />}
+                      placeholderSymbol={<FontAwesomeIcon icon="star" className="text-danger" />}
+                      fullSymbol={<FontAwesomeIcon icon="star" className="text-warning" />}
               />
-            </Col>
-          </Row>
-        </td>
-        <MemberModal member={member} show={show} showModal={setShow} />
-      </tr>
+              {/*<ProgressBar now={Math.abs(rating) * 10} style={{width: '80px', height: 5}} variant={rating > 0? 'info': 'warning'} />*/}
+            </Flex>
+            {/*<p className="fs--2 mb-0">{'1h:52m'}</p>*/}
+          </Col>
+        </Row>
+      </td>
+      <td className="align-middle text-center fw-semi-bold">
+        <Row className="g-2 justify-content-center">
+          <Col xs="auto" className="mt-auto">
+            <BasicECharts
+              echarts={echarts}
+              options={{
+                color: getColor('primary'), tooltip: {show: false}, series: [{
+                  data: rating_history
+                }]
+              }}
+              className="mb-1"
+              style={{width: '10.625rem', height: '1rem'}}
+            />
+          </Col>
+        </Row>
+      </td>
+    </tr>
     // </>
   );
 };
 
 const MemberList = () => {
 
+
   const [memberList] = useState(members)
+  const [curMember, setCurMember] = useState(memberList[1])
+  const [showModal, setShowModal] = useState(false)
+  // const [prevIndex, setPrevIndex] = useState(0)
+  const [curIndex, setCurIndex] = useState(1)
+  // const [nextIndex, setNextIndex] = useState(2)
   // console.log("Members ", memberList)
+
+  const openMemberDetailModal = (index) => {
+    setCurMember(members[index])
+    setShowModal(true)
+
+    setCurIndex(index)
+    // setPrevIndex(index - 1)
+    // setNextIndex(index + 1)
+  }
+
+  const loadNextMember = (newIndex) => {
+    console.log("setting member ", newIndex)
+      setCurIndex(newIndex)
+      // setPrevIndex(curIndex)
+      // setNextIndex(curIndex + 2)
+      setCurMember(members[newIndex])
+    // } else {
+    //   setCurIndex(curIndex - 1)
+    //   setPrevIndex(curIndex - 2)
+    //   setNextIndex(curIndex)
+    //   setCurMember(members[curIndex - 1])
+    // }
+  }
+
+  console.log("Rendering ", curIndex, members.length)
   return (
     <Card className="h-100">
       <Card.Body className="p-0">
         <SimpleBarReact>
-          <Table
-            borderless
-            className="mb-0 fs--1 border-200 rounded-3 table-dashboard table-member-info"
-          >
+          <Table borderless className="mb-0 fs--1 border-200 rounded-3 table-dashboard table-member-info">
             <thead className="bg-light">
             <tr className="text-900">
               <th>Member info</th>
@@ -163,8 +184,10 @@ const MemberList = () => {
             <tbody>
             {memberList.map((member, index) => (
               <MembersRow member={member}
-                isLast={index === memberList.length - 1}
-                key={index}
+                          isLast={index === memberList.length - 1}
+                          openMemberDetailModal={openMemberDetailModal}
+                          index={index}
+                          key={index}
               />))}
             </tbody>
           </Table>
@@ -185,14 +208,19 @@ const MemberList = () => {
           </Col>
         </Row>
       </Card.Footer>
-    </Card>)
-  // };
+      {showModal &&
+        <MemberModal member={curMember} show={showModal} showModal={setShowModal} moveToMember={loadNextMember}
+                     noOfMembers={members.length} curIndex={curIndex}/>
+      }
+    </Card>
+  )
 };
 
 MembersRow.propTypes = {
   member: Member.propTypes.member,
-  isLast: PropTypes.bool
+  isLast: PropTypes.bool,
+  openMemberDetailModal: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired
 };
-
 
 export default MemberList;
