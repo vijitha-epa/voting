@@ -1,4 +1,16 @@
-import { Accordion, Button, Card, CloseButton, Col, Modal, Nav, Row, Table } from "react-bootstrap";
+import {
+  Accordion,
+  Button,
+  Card,
+  CloseButton,
+  Col,
+  ListGroup,
+  ListGroupItem,
+  Modal,
+  Nav,
+  Row,
+  Table
+} from "react-bootstrap";
 import Flex from "../common/Flex";
 import Rating from "react-rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,6 +21,7 @@ import SoftBadge from "../common/SoftBadge";
 import React from "react";
 import PropTypes from "prop-types";
 import Member from "./Member";
+import { getColorByRating } from "./MemberList";
 
 const Actions = () => (
   <div className="end-0 top-50 pe-3 translate-middle-y hover-actions">
@@ -23,7 +36,7 @@ const Actions = () => (
 
 const MemberModal = ({member, show, showModal, moveToMember, noOfMembers, curIndex}) => {
   // console.log("In Modal ", show, member)
-  const {id, description, img, name, age, edu_qualifications, prof_qualifications, rating, rating_history, total_votes} = member
+  const {id, description, img, name, age, gender, edu_qualifications, prof_qualifications, rating, rating_history, total_votes} = member
   return (
     <Modal show={show} size="lg" fullscreen={"lg-down"} onHide={() => showModal(false)}>
       <Modal.Header>
@@ -43,18 +56,43 @@ const MemberModal = ({member, show, showModal, moveToMember, noOfMembers, curInd
                 <Card.Text>
                   {description}
                 </Card.Text>
-                {/*<Row className="g-2 justify-content-around">*/}
-                {/*  <Col xs="auto">*/}
-                <Flex alignItems="center">
-                  <Rating initialRating={Math.abs(rating)} readonly stop={10}
-                          className="hint--bottom hint--bounce" aria-label="Current rating"
-                          emptySymbol={<FontAwesomeIcon icon={['far', 'star']} className="text-warning" />}
-                          placeholderSymbol={<FontAwesomeIcon icon="star" className="text-danger" />}
-                          fullSymbol={<FontAwesomeIcon icon="star" className="text-warning" />}
-                  />
-                </Flex>
-                {/*  </Col>*/}
-                {/*</Row>*/}
+                <Card.Text>
+                <Row className="g-2 justify-content-start">
+                  <Col xs="auto">
+                    Age
+                  </Col>
+                  <Col xs="auto">
+                    {age}
+                  </Col>
+                </Row>
+                <Row className="g-2 justify-content-start">
+                  <Col xs="auto">
+                    Gender
+                  </Col>
+                  <Col xs="auto">
+                    {gender}
+                  </Col>
+                </Row>
+                </Card.Text>
+                <Row className="g-2">
+                  <Col xs="auto" className="justify-content-start">
+                    <Flex alignItems="left">
+                      <Rating initialRating={Math.abs(rating)} readonly stop={10}
+                              className="hint--bottom hint--bounce" aria-label="Current rating"
+                              emptySymbol={<FontAwesomeIcon icon={['far', 'star']} className="text-warning" />}
+                              placeholderSymbol={<FontAwesomeIcon icon="star" className="text-danger" />}
+                              fullSymbol={<FontAwesomeIcon icon="star" className="text-warning" />}
+                      />
+                    </Flex>
+                  </Col>
+                  <Col xs="auto" className="justify-content-end">
+                    <SoftBadge className={"me-2 " + getColorByRating(rating * 10)}>
+                      {(rating > 0 ? "Loved ": "Disliked ") + Math.abs(rating) * 10}
+                    </SoftBadge>
+
+                  </Col>
+                </Row>
+
               </Card.Body>
               {/*<ListGroup className="list-group-flush">*/}
               {/*  <ListGroupItem onClick={() => console.log("Clicked ss")}><a href="#">Educational*/}
@@ -152,9 +190,9 @@ const MemberModal = ({member, show, showModal, moveToMember, noOfMembers, curInd
                 <Accordion.Item eventKey="4">
                   <Accordion.Header>Reviews</Accordion.Header>
                   <Accordion.Body>
-                    {prof_qualifications.map((pro, index) => <SoftBadge pill className={"me-2"} bg={"primary"} key={index}>
-                      {pro}
-                    </SoftBadge>)}
+                    <SoftBadge className={"me-2"} bg={"info"}>
+                      Will be coming Soon.....
+                    </SoftBadge>
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
@@ -174,11 +212,6 @@ const MemberModal = ({member, show, showModal, moveToMember, noOfMembers, curInd
           <Nav.Item>
             <Nav.Link eventKey="next" disabled={curIndex + 1 >= noOfMembers}>{"Next Member>"}</Nav.Link>
           </Nav.Item>
-          {/*<Nav.Item>*/}
-          {/*  <Nav.Link eventKey="disabled" disabled>*/}
-          {/*    Disabled*/}
-          {/*  </Nav.Link>*/}
-          {/*</Nav.Item>*/}
         </Nav>
         <Button variant="secondary" onClick={() => showModal(false)}>
           Close

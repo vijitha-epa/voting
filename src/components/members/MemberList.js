@@ -26,7 +26,7 @@ import { CloseButton } from "../common/Toast";
 import Member from "./Member";
 import MemberModal from "./MemberModal";
 
-const getColorByRating = (number) => {
+export const getColorByRating = (number) => {
   if (number > 80) return 'bg-plus-80'
   if (number > 50) return 'bg-plus-50'
   if (number > 25) return 'bg-plus-25'
@@ -39,10 +39,11 @@ const getColorByRating = (number) => {
 
 
 const MembersRow = ({member, isLast, openMemberDetailModal, index}) => {
-  // console.log("In Member raw ", index)
+
   const {id, img, name, age, gender, edu_qualifications, prof_qualifications, rating, total_votes, rating_history} = member
   const bgColor = getColorByRating(rating * 10)
 
+  console.log("In Member raw ", rating, bgColor)
   return (
     // <>
     <tr className={classNames({'border-bottom border-200': !isLast})} key={id}>
@@ -92,9 +93,9 @@ const MembersRow = ({member, isLast, openMemberDetailModal, index}) => {
       <td className="align-middle">
         <Row className="g-2 justify-content-center">
           <Col xs="auto">
-            <Badge className={"me-2 " + bgColor}>
+            <SoftBadge className={"me-2 " + bgColor}>
               {rating * 10}%
-            </Badge>
+            </SoftBadge>
             <SoftBadge pill bg={"primary"}>
               by {total_votes} votes
             </SoftBadge>
