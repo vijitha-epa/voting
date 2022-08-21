@@ -70,7 +70,7 @@ const MemberModal = ({member, show, showModal, moveToMember, noOfMembers, curInd
                     Gender
                   </Col>
                   <Col xs="auto">
-                    {gender}
+                    {gender === 'm'? "Male": "Female"}
                   </Col>
                 </Row>
                 </Card.Text>
@@ -78,10 +78,10 @@ const MemberModal = ({member, show, showModal, moveToMember, noOfMembers, curInd
                   <Col xs="auto" className="justify-content-start">
                     <Flex alignItems="left">
                       <Rating initialRating={Math.abs(rating)} readonly stop={10}
-                              className="hint--bottom hint--bounce" aria-label="Current rating"
-                              emptySymbol={<FontAwesomeIcon icon={['far', 'star']} className="text-warning" />}
-                              placeholderSymbol={<FontAwesomeIcon icon="star" className="text-danger" />}
-                              fullSymbol={<FontAwesomeIcon icon="star" className="text-warning" />}
+                              className={"hint--bottom hint--bounce  fs-1"} aria-label="Current rating"
+                              emptySymbol={<FontAwesomeIcon icon={['far', 'star']} className={rating > 0? "text-success": " text-danger"} />}
+                              placeholderSymbol={<FontAwesomeIcon icon="star" className={rating > 0? "text-success": " text-danger"} />}
+                              fullSymbol={<FontAwesomeIcon icon="star" className={rating > 0? "text-success": " text-danger"} />}
                       />
                     </Flex>
                   </Col>

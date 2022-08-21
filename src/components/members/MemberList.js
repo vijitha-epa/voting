@@ -66,7 +66,7 @@ const MembersRow = ({member, isLast, openMemberDetailModal, index}) => {
             </h6>
             {/*<p className = "fw-semi-bold mb-0 text-500">*/}
             <Badge bg={gender === 'm' ? "primary" : 'warning'}>
-              {gender}
+              {gender === 'm'? "Male": "Female"}
             </Badge>
             <SoftBadge bg={"secondary"}>
               {age}

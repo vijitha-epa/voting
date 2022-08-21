@@ -22,7 +22,7 @@ const Member = ({member, isPositive}) => {
                 {name}
               </Link>
             </h6>
-            <p className="fw-semi-bold mb-0 text-500">{gender}/{age}</p>
+            <p className="fw-semi-bold mb-0 text-500">{gender === 'm'? "Male": "Female"}/{age}</p>
           </div>
         </Flex>
       </td>
