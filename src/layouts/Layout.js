@@ -184,6 +184,7 @@ import Dashboard from 'components/dashboards/default';
 import AppContext from 'context/Context';
 import Members from "components/members/Members";
 import MemberList from "../components/members/MemberList";
+import UserSignInModal from "../components/user/UserSignInModal";
 
 const Layout = () => {
   const HTMLClassList = document.getElementsByTagName('html')[0].classList;
@@ -261,6 +262,33 @@ const Layout = () => {
         />
         <Route
           path="authentication/card/lock-screen"
+          element={<CardLockScreen />}
+        />
+
+
+        {/*- ------------- User ---------------------------  */}
+        <Route path="authentication/user/login" element={<CardLogin />} />
+        <Route
+          path="authentication/user/register"
+          element={<CardRegistration />}
+        />
+        <Route path="authentication/user/modal" element={<UserSignInModal state={true}/>} />
+
+        <Route path="authentication/user/logout" element={<Logout />} />
+        <Route
+          path="authentication/user/forgot-password"
+          element={<CardForgetPassword />}
+        />
+        <Route
+          path="authentication/user/reset-password"
+          element={<CardPasswordReset />}
+        />
+        <Route
+          path="authentication/user/confirm-mail"
+          element={<CardConfirmMail />}
+        />
+        <Route
+          path="authentication/user/lock-screen"
           element={<CardLockScreen />}
         />
 
@@ -545,6 +573,7 @@ const Layout = () => {
           <Route path="documentation/design-file" element={<DesignFile />} />
           <Route path="changelog" element={<Changelog />} />
           <Route path="authentication-modal" element={<ModalAuth />} />
+          {/*<Route path="authentication/user/modal" element={<UserSignInModal open={true}/>} />*/}
         </Route>
 
         {/* //--- MainLayout end  */}
@@ -552,6 +581,7 @@ const Layout = () => {
         {/* <Navigate to="/errors/404" /> */}
         <Route path="*" element={<Navigate to="/errors/404" replace />} />
       </Routes>
+
       <SettingsToggle />
       <SettingsPanel />
       <ToastContainer

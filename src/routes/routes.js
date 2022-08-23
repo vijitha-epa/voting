@@ -314,6 +314,47 @@ export const pagesRoutes = {
           ]
         },
         {
+          name: 'User',
+          active: true,
+          children: [
+            {
+              name: 'Login',
+              to: '/authentication/user/login',
+              active: true
+            },
+            {
+              name: 'Logout',
+              to: '/authentication/user/logout',
+              active: true
+            },
+            {
+              name: 'Register',
+              to: '/authentication/user/register',
+              active: true
+            },
+            {
+              name: 'Forgot password',
+              to: '/authentication/user/forgot-password',
+              active: true
+            },
+            {
+              name: 'Confirm mail',
+              to: '/authentication/user/confirm-mail',
+              active: true
+            },
+            {
+              name: 'Reset password',
+              to: '/authentication/user/reset-password',
+              active: true
+            },
+            {
+              name: 'Lock screen',
+              to: '/authentication/user/lock-screen',
+              active: true
+            }
+          ]
+        },
+        {
           name: 'Split',
 
           active: true,
