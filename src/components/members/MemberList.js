@@ -58,20 +58,28 @@ const MembersRow = ({member, isLast, openMemberDetailModal, index}) => {
           />
           <div className="flex-1 ms-3">
             <h6 className="mb-0 fw-semi-bold">
-              <NavLink
-                end={false}
-                to={"/authentication/user/modal"}
-                state={{ open: true }}
-                className={({ isActive }) =>
-                  isActive ? 'active nav-link stretched-link' : 'nav-link stretched-link'
-                }>
-                {/*<Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}*/}
-                {/*        className='me-2 mb-1 stretched-link'>*/}
+              {index === 3 &&
+                <NavLink
+                  end={false}
+                  to={"/authentication/user/modal"}
+                  state={{ open: true }}
+                  className={({ isActive }) =>
+                    isActive ? 'active nav-link stretched-link' : 'nav-link stretched-link'
+                  }>
+                  {/*<Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}*/}
+                  {/*        className='me-2 mb-1 stretched-link'>*/}
                   {name}
 
-                {/*</Button>*/}
-                {/*<NavbarVerticalMenuItem route={route} />*/}
-              </NavLink>
+                  {/*</Button>*/}
+                  {/*<NavbarVerticalMenuItem route={route} />*/}
+                </NavLink>
+              }
+              {index !== 3 &&
+                <Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}
+                      className='me-2 mb-1 stretched-link'>
+                {name}
+              </Button>
+              }
 
               {/*<Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}*/}
               {/*        className='me-2 mb-1 stretched-link'>*/}
@@ -161,18 +169,14 @@ const MemberList = () => {
 
   const openMemberDetailModal = (index) => {
     console.log('Member index ', index)
-    if(index === 3 ) {
       setCurMember(members[index])
       setShowModal(true)
 
       setCurIndex(index)
-    } else {
-      navigate('/authentication/user/modal');
-    }
+    // } else {
+    //   navigate('/authentication/user/modal');
+    // }
 
-
-    // setPrevIndex(index - 1)
-    // setNextIndex(index + 1)
   }
 
   const loadNextMember = (newIndex) => {
