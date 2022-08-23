@@ -6,7 +6,7 @@ import {
   Accordion,
   Badge, Button, Card, Col, Form, ListGroup, ListGroupItem, Modal, Nav, ProgressBar, Row, Table
 } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import SoftBadge from 'components/common/SoftBadge';
 import PropTypes from 'prop-types';
 import BasicECharts from 'components/common/BasicEChart';
@@ -58,14 +58,36 @@ const MembersRow = ({member, isLast, openMemberDetailModal, index}) => {
           />
           <div className="flex-1 ms-3">
             <h6 className="mb-0 fw-semi-bold">
-              <Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}
+              {index === 3 &&
+                <NavLink
+                  end={false}
+                  to={"/authentication/user/modal"}
+                  state={{ open: true }}
+                  className={({ isActive }) =>
+                    isActive ? 'active nav-link stretched-link' : 'nav-link stretched-link'
+                  }>
+                  {/*<Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}*/}
+                  {/*        className='me-2 mb-1 stretched-link'>*/}
+                  {name}
+
+                  {/*</Button>*/}
+                  {/*<NavbarVerticalMenuItem route={route} />*/}
+                </NavLink>
+              }
+              {index !== 3 &&
+                <Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}
                       className='me-2 mb-1 stretched-link'>
                 {name}
               </Button>
-              {/*</Link>*/}
+              }
+
+              {/*<Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}*/}
+              {/*        className='me-2 mb-1 stretched-link'>*/}
+              {/*  {name}*/}
+              {/*</Button>*/}
             </h6>
             {/*<p className = "fw-semi-bold mb-0 text-500">*/}
-            <Badge bg={gender === 'm' ? "primary" : 'warning'}>
+            <Badge bg={gender === 'm' ? "primary" : 'warning'} className="m-lg-3">
               {gender === 'm'? "Male": "Female"}
             </Badge>
             <SoftBadge bg={"secondary"}>
@@ -139,32 +161,27 @@ const MemberList = () => {
   const [memberList] = useState(members)
   const [curMember, setCurMember] = useState(memberList[1])
   const [showModal, setShowModal] = useState(false)
+  const navigate = useNavigate();
   // const [prevIndex, setPrevIndex] = useState(0)
   const [curIndex, setCurIndex] = useState(1)
   // const [nextIndex, setNextIndex] = useState(2)
   // console.log("Members ", memberList)
 
   const openMemberDetailModal = (index) => {
-    setCurMember(members[index])
-    setShowModal(true)
+    console.log('Member index ', index)
+      setCurMember(members[index])
+      setShowModal(true)
 
-    setCurIndex(index)
-    // setPrevIndex(index - 1)
-    // setNextIndex(index + 1)
+      setCurIndex(index)
+    // } else {
+    //   navigate('/authentication/user/modal');
+    // }
+
   }
 
   const loadNextMember = (newIndex) => {
-    console.log("setting member ", newIndex)
       setCurIndex(newIndex)
-      // setPrevIndex(curIndex)
-      // setNextIndex(curIndex + 2)
       setCurMember(members[newIndex])
-    // } else {
-    //   setCurIndex(curIndex - 1)
-    //   setPrevIndex(curIndex - 2)
-    //   setNextIndex(curIndex)
-    //   setCurMember(members[curIndex - 1])
-    // }
   }
 
   console.log("Rendering ", curIndex, members.length)
@@ -205,7 +222,19 @@ const MemberList = () => {
             </Form.Select>
           </Col>
           <Col xs="auto">
-            <FalconLink title="View All" className="px-0" />
+            <FalconLink title="View All" className="px-0" to="/authentication/user/modal"/>
+            <Nav.Item as="li" key="Register" onClick={() => console.log("Registering")}>
+              <NavLink
+                end={false}
+                to={"/authentication/user/modal"}
+                state={{ open: true }}
+                className={({ isActive }) =>
+                  isActive ? 'active nav-link' : 'nav-link'
+                }
+              >Register
+                {/*<NavbarVerticalMenuItem route={route} />*/}
+              </NavLink>
+            </Nav.Item>
           </Col>
         </Row>
       </Card.Footer>

@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { CloseButton, Modal } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router';
 import RegistrationForm from 'components/authentication/RegistrationForm';
+import Wizard from "../wizard/Wizard";
+import UserSignInWizard from "./UserSignInWizard";
+import SocialAuthButtons from "../authentication/SocialAuthButtons";
+import Divider from "../common/Divider";
 
 export default function Example() {
   let {
@@ -33,8 +37,9 @@ export default function Example() {
           onClick={handleClose}
         />
       </Modal.Header>
-      <Modal.Body className="p-4">
-        <RegistrationForm layout="split" hasLabel />
+      <Modal.Body>
+        {/*<RegistrationForm layout="split" hasLabel />*/}
+        <UserSignInWizard validation={true} />
       </Modal.Body>
     </Modal>
   );

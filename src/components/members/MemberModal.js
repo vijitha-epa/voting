@@ -47,7 +47,7 @@ const MemberModal = ({member, show, showModal, moveToMember, noOfMembers, curInd
         />
       </Modal.Header>
       <Modal.Body>
-        <Row className="g-0 flex-between-center">
+        <Row className="g-0 flex-1">
           <Col md="auto">
             <Card bg={"light"} text={"dark"} style={{width: '23.5rem'}}>
               <Card.Img src={img} variant='top' />
@@ -87,7 +87,7 @@ const MemberModal = ({member, show, showModal, moveToMember, noOfMembers, curInd
                   </Col>
                   <Col xs="auto" className="justify-content-end">
                     <SoftBadge className={"me-2 " + getColorByRating(rating * 10)}>
-                      {(rating > 0 ? "Loved ": "Disliked ") + Math.abs(rating) * 10}
+                      {(rating > 0 ? "Loved ": "Disliked ") + Math.abs(rating) * 10}%
                     </SoftBadge>
 
                   </Col>
@@ -125,8 +125,8 @@ const MemberModal = ({member, show, showModal, moveToMember, noOfMembers, curInd
             </Card>
 
           </Col>
-          <Col md="auto">
-            <Card style={{width: '23.5rem'}}>
+          <Col md="auto" className="gx-2">
+            <Card style={{width: '23rem', marginLeft: '11px'}}>
               {/*<Card.Body>*/}
               <Accordion defaultActiveKey="0" flush>
                 <Accordion.Item eventKey="0">
