@@ -8,6 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const UserVerificationForm = ({ register, errors, setValue }) => {
   return (
     <>
+      <Row className="g-2 mb-3 fs--1 mb-0 text-warning">
+        {/*<span className="fs--1 mb-0 ">*/}
+          Please enter verification codes has sent to your email and mobile no
+        {/*</span>*/}
+      </Row>
       <Row className="g-2 mb-3">
         <WizardInput
           type="number"
@@ -18,8 +23,8 @@ const UserVerificationForm = ({ register, errors, setValue }) => {
           formGroupProps={{ as: Col, sm: 12 }}
           formControlProps={{
             className: 'input-spin-none',
-            ...register('cardNumber', {
-              required: 'Please Enter your card number'
+            ...register('phoneCode', {
+              required: 'Please Enter phone verification code'
             })
           }}
         />
@@ -48,8 +53,8 @@ const UserVerificationForm = ({ register, errors, setValue }) => {
           formGroupProps={{ as: Col, sm: 12 }}
           formControlProps={{
             className: 'input-spin-none',
-            ...register('zipCode', {
-              required: 'Zip code is requred'
+            ...register('emailCode', {
+              required: 'Please Enter email verification code'
             })
           }}
         />
