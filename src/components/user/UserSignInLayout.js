@@ -17,6 +17,7 @@ import SocialAuthButtons from "../authentication/SocialAuthButtons";
 import UserAccountForm from "./UserAccountForm";
 import UserVerificationForm from "./VerificationForm";
 import UserPersonalForm from "./UserPersonalForm";
+import { NavLink } from "react-router-dom";
 
 const UserSignInLayout = ({ variant, validation, progressBar }) => {
   const { isRTL } = useContext(AppContext);
@@ -143,6 +144,21 @@ const UserSignInLayout = ({ variant, validation, progressBar }) => {
             ' d-flex': step < 4
           })}
         >
+
+          {step === 1 &&
+            <>
+              <div className='text-primary justify-content-start'>Have an account?</div>
+              <NavLink
+                end={false}
+                to={"/authentication/user/login"}
+                state={{ open: true }}
+                className={'active'}>
+                Login
+              </NavLink>
+            </>
+          }
+
+
           <IconButton
             variant="link"
             icon={isRTL ? 'chevron-right' : 'chevron-left'}

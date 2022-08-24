@@ -75,6 +75,7 @@ const LoginForm = ({ hasLabel, layout }) => {
           <Link
             className="fs--1 mb-0"
             to={`/authentication/${layout}/forgot-password`}
+            state={{ open: true }}
           >
             Forget Password?
           </Link>

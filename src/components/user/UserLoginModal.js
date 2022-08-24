@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, CloseButton, Modal } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router';
 import UserSignInWizard from "./UserSignInWizard";
+import UserLogin from "../members/UserLogin";
 
 export default function Example() {
   let {
@@ -21,11 +22,11 @@ export default function Example() {
       <Modal.Header className="bg-shape modal-shape-header px-4 position-relative">
         <div className="position-relative z-index-1 light">
           <h4 className="mb-0 text-white" id="authentication-modal-label">
-            Register
+            Login
           </h4>
-          <p className="fs--1 mb-0 text-white">
-            Please create your free account
-          </p>
+          {/*<p className="fs--1 mb-0 text-white">*/}
+          {/*  Please create your free account*/}
+          {/*</p>*/}
         </div>
         <CloseButton
           variant="white"
@@ -34,8 +35,7 @@ export default function Example() {
         />
       </Modal.Header>
       <Modal.Body>
-        {/*<RegistrationForm layout="split" hasLabel />*/}
-        <UserSignInWizard validation={true} />
+        <UserLogin/>
       </Modal.Body>
     </Modal>
 
