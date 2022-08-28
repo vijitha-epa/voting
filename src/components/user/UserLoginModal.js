@@ -3,20 +3,23 @@ import { Button, CloseButton, Modal } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router';
 import UserSignInWizard from "./UserSignInWizard";
 import UserLogin from "../members/UserLogin";
+import UserSignInModal from "./UserSignInModal";
 
 export default function Example() {
   let {
     state: { open }
   } = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [show, setShow] = useState(open);
 
   const handleClose = () => {
     setShow(false);
-    navigate(-1);
+    // navigate(-1);
+    navigate("/", { replace: true })
   };
-  console.log("Inside ", open, show)
+  console.log("Inside Login", location.state?.from?.pathname, location)
   return (
     <Modal show={show} onHide={handleClose} className="mt-4" size="lg">
       <Modal.Header className="bg-shape modal-shape-header px-4 position-relative">
