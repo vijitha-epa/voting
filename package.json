@@ -105,5 +105,6 @@
     "webpack-cli": "^4.6.0",
     "webpack-fix-style-only-entries": "^0.6.1",
     "webpack-rtl-plugin": "^2.0.0"
-  }
+  },
+  "proxy": "http:localhost:8080"
 }

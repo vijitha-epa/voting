@@ -185,6 +185,8 @@ import AppContext from 'context/Context';
 import Members from "components/members/Members";
 import MemberList from "../components/members/MemberList";
 import UserSignInModal from "../components/user/UserSignInModal";
+import UserLoginModal from "../components/user/UserLoginModal";
+import UserForgetPasswordModal from "../components/user/UserForgetPasswordModal";
 
 const Layout = () => {
   const HTMLClassList = document.getElementsByTagName('html')[0].classList;
@@ -267,17 +269,14 @@ const Layout = () => {
 
 
         {/*- ------------- User ---------------------------  */}
-        <Route path="authentication/user/login" element={<CardLogin />} />
-        <Route
-          path="authentication/user/register"
-          element={<CardRegistration />}
-        />
-        <Route path="authentication/user/modal" element={<UserSignInModal state={true}/>} />
+        <Route path="authentication/user/login" element={<UserLoginModal state={true}/>} />
+
+        <Route path="authentication/user/register" element={<UserSignInModal state={true}/>} />
 
         <Route path="authentication/user/logout" element={<Logout />} />
         <Route
           path="authentication/user/forgot-password"
-          element={<CardForgetPassword />}
+          element={<UserForgetPasswordModal state={true}/>}
         />
         <Route
           path="authentication/user/reset-password"
@@ -573,7 +572,6 @@ const Layout = () => {
           <Route path="documentation/design-file" element={<DesignFile />} />
           <Route path="changelog" element={<Changelog />} />
           <Route path="authentication-modal" element={<ModalAuth />} />
-          {/*<Route path="authentication/user/modal" element={<UserSignInModal open={true}/>} />*/}
         </Route>
 
         {/* //--- MainLayout end  */}

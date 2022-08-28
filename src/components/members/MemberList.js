@@ -25,6 +25,7 @@ import Rating from "react-rating";
 import { CloseButton } from "../common/Toast";
 import Member from "./Member";
 import MemberModal from "./MemberModal";
+import IconButton from "../common/IconButton";
 
 export const getColorByRating = (number) => {
   if (number > 80) return 'bg-plus-80'
@@ -61,30 +62,33 @@ const MembersRow = ({member, isLast, openMemberDetailModal, index}) => {
               {index === 3 &&
                 <NavLink
                   end={false}
-                  to={"/authentication/user/modal"}
+                  to={"/authentication/user/register"}
                   state={{ open: true }}
-                  className={({ isActive }) =>
-                    isActive ? 'active nav-link stretched-link' : 'nav-link stretched-link'
-                  }>
-                  {/*<Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}*/}
-                  {/*        className='me-2 mb-1 stretched-link'>*/}
+                  className={'active nav-link stretched-link mt-2'}>
                   {name}
-
-                  {/*</Button>*/}
-                  {/*<NavbarVerticalMenuItem route={route} />*/}
                 </NavLink>
               }
               {index !== 3 &&
-                <Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}
-                      className='me-2 mb-1 stretched-link'>
-                {name}
-              </Button>
-              }
+                // <Button
+                //   as={Link}
+                //   variant="link"
+                //   className="mt-2 px-4 stretched-link "
+                //   to="/authentication/card/login"
+                // >
+                //   {name}
+                // </Button>
 
-              {/*<Button variant='falcon-default' onClick={() => openMemberDetailModal(index)}*/}
-              {/*        className='me-2 mb-1 stretched-link'>*/}
-              {/*  {name}*/}
-              {/*</Button>*/}
+                <IconButton
+                  variant="link"
+                  icon='chevron-right'
+                  iconAlign="left"
+                  transform="down-1 shrink-4"
+                  className='me-2 mb-1 stretched-link'
+                  onClick={() => openMemberDetailModal(index)}
+                >
+                  {name}
+                </IconButton>
+              }
             </h6>
             {/*<p className = "fw-semi-bold mb-0 text-500">*/}
             <Badge bg={gender === 'm' ? "primary" : 'warning'} className="m-lg-3">
@@ -174,7 +178,7 @@ const MemberList = () => {
 
       setCurIndex(index)
     // } else {
-    //   navigate('/authentication/user/modal');
+    //   navigate('/authentication/user/register');
     // }
 
   }
@@ -222,11 +226,11 @@ const MemberList = () => {
             </Form.Select>
           </Col>
           <Col xs="auto">
-            <FalconLink title="View All" className="px-0" to="/authentication/user/modal"/>
+            <FalconLink title="View All" className="px-0" to="/authentication/user/register"/>
             <Nav.Item as="li" key="Register" onClick={() => console.log("Registering")}>
               <NavLink
                 end={false}
-                to={"/authentication/user/modal"}
+                to={"/authentication/user/register"}
                 state={{ open: true }}
                 className={({ isActive }) =>
                   isActive ? 'active nav-link' : 'nav-link'

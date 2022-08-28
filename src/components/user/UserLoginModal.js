@@ -2,30 +2,34 @@ import React, { useState } from 'react';
 import { Button, CloseButton, Modal } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router';
 import UserSignInWizard from "./UserSignInWizard";
+import UserLogin from "../members/UserLogin";
+import UserSignInModal from "./UserSignInModal";
 
 export default function Example() {
   let {
     state: { open }
   } = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [show, setShow] = useState(open);
 
   const handleClose = () => {
     setShow(false);
-    navigate(-1);
+    // navigate(-1);
+    navigate("/", { replace: true })
   };
-  console.log("Inside ", open, show)
+  console.log("Inside Login", location.state?.from?.pathname, location)
   return (
     <Modal show={show} onHide={handleClose} className="mt-4" size="lg">
       <Modal.Header className="bg-shape modal-shape-header px-4 position-relative">
         <div className="position-relative z-index-1 light">
           <h4 className="mb-0 text-white" id="authentication-modal-label">
-            Register
+            Login
           </h4>
-          <p className="fs--1 mb-0 text-white">
-            Please create your free account
-          </p>
+          {/*<p className="fs--1 mb-0 text-white">*/}
+          {/*  Please create your free account*/}
+          {/*</p>*/}
         </div>
         <CloseButton
           variant="white"
@@ -34,8 +38,7 @@ export default function Example() {
         />
       </Modal.Header>
       <Modal.Body>
-        {/*<RegistrationForm layout="split" hasLabel />*/}
-        <UserSignInWizard validation={true} />
+        <UserLogin/>
       </Modal.Body>
     </Modal>
 

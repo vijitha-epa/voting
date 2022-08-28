@@ -5,8 +5,12 @@ import { toast } from 'react-toastify';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import Divider from 'components/common/Divider';
 import SocialAuthButtons from './SocialAuthButtons';
+import { useNavigate } from "react-router";
 
 const LoginForm = ({ hasLabel, layout }) => {
+
+  const navigate = useNavigate();
+
   // State
   const [formData, setFormData] = useState({
     email: '',
@@ -20,6 +24,13 @@ const LoginForm = ({ hasLabel, layout }) => {
     toast.success(`Logged in as ${formData.email}`, {
       theme: 'colored'
     });
+    sessionStorage.setItem('user', JSON.stringify(formData.email))
+    sessionStorage.setItem("pass", JSON.stringify(formData.password))
+
+    // const user = JSON.parse('user')
+    navigate('/', {replace: true})
+    // navigate("...", { replace: true })
+
   };
 
   const handleFieldChange = e => {
@@ -75,6 +86,7 @@ const LoginForm = ({ hasLabel, layout }) => {
           <Link
             className="fs--1 mb-0"
             to={`/authentication/${layout}/forgot-password`}
+            state={{ open: true }}
           >
             Forget Password?
           </Link>

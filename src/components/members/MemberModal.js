@@ -77,7 +77,7 @@ const MemberModal = ({member, show, showModal, moveToMember, noOfMembers, curInd
                 <Row className="g-2">
                   <Col xs="auto" className="justify-content-start">
                     <Flex alignItems="left">
-                      <Rating initialRating={Math.abs(rating)} readonly stop={10}
+                      <Rating initialRating={Math.abs(rating)} readonly stop={10} onClick={() => console.log('Changing ratings ')}
                               className={"hint--bottom hint--bounce  fs-1"} aria-label="Current rating"
                               emptySymbol={<FontAwesomeIcon icon={['far', 'star']} className={rating > 0? "text-success": " text-danger"} />}
                               placeholderSymbol={<FontAwesomeIcon icon="star" className={rating > 0? "text-success": " text-danger"} />}
